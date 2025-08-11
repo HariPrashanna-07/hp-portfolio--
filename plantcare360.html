@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantCare 360 - Project Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+        .scroll-animation {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #66bb6a, #43a047);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-green-700">PlantCare 360</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#introduction" class="text-gray-600 hover:text-green-700">Introduction</a>
+                <a href="#features" class="text-gray-600 hover:text-green-700">Features</a>
+                <a href="#architecture" class="text-gray-600 hover:text-green-700">Architecture</a>
+                <a href="#tech-stack" class="text-gray-600 hover:text-green-700">Tech Stack</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Hero Section -->
+        <section class="text-center py-24 md:py-32 gradient-bg rounded-xl mt-24 text-white">
+            <h1 class="text-4xl md:text-6xl font-bold">PlantCare 360</h1>
+            <p class="text-xl mt-4">Intelligent Plant Care, Entirely Local.</p>
+        </section>
+
+        <!-- Abstract -->
+        <section id="abstract" class="py-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Abstract</h2>
+            <p class="max-w-3xl mx-auto text-center text-gray-600 leading-relaxed">
+                PlantCare 360 is a self-contained, intelligent plant monitoring and automated maintenance system designed for local operation without any dependency on cloud services. By leveraging an ESP32 microcontroller, a suite of environmental sensors, and a locally hosted web dashboard, the system provides real-time data and rules-based automation to ensure optimal plant health with minimal human intervention, guaranteeing privacy and reliability.
+            </p>
+        </section>
+
+        <!-- Introduction -->
+        <section id="introduction" class="py-20 bg-white rounded-lg shadow-sm scroll-animation">
+             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">The Problem & Our Solution</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">Maintaining optimal conditions for plant growth is challenging. Commercial IoT solutions often rely on the cloud, creating privacy risks, subscription costs, and a dependency on internet connectivity.</p>
+                    <p class="text-gray-600 leading-relaxed">PlantCare 360 addresses this by providing a powerful, reliable, and entirely local solution. By hosting all functionalities on an ESP32, the system operates autonomously, enhancing data security and ensuring uninterrupted operation.</p>
+                </div>
+                <div class="flex justify-center">
+                    <i class="fas fa-seedling text-9xl text-green-500"></i>
+                </div>
+             </div>
+        </section>
+
+        <!-- Objectives -->
+        <section id="objectives" class="py-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Project Objectives</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4">
+                    <i class="fas fa-bullseye text-2xl text-green-600 mt-1"></i>
+                    <p>Design a closed-loop system to monitor critical environmental parameters for plant health.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4">
+                    <i class="fas fa-robot text-2xl text-green-600 mt-1"></i>
+                    <p>Implement an automated, rules-based watering system that responds to real-time sensor data.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4">
+                    <i class="fas fa-desktop text-2xl text-green-600 mt-1"></i>
+                    <p>Develop a user-friendly, locally hosted web dashboard for live data visualization and manual control.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4">
+                    <i class="fas fa-lock text-2xl text-green-600 mt-1"></i>
+                    <p>Ensure all system operations are performed locally, without reliance on any external cloud services.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="py-20 bg-white rounded-lg shadow-sm scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Core Features</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-4">
+                    <i class="fas fa-chart-line text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Real-Time Monitoring</h3>
+                    <p class="text-gray-600 text-sm">Tracks soil moisture, temperature, humidity, and light.</p>
+                </div>
+                <div class="text-center p-4">
+                    <i class="fas fa-tint text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Automated Watering</h3>
+                    <p class="text-gray-600 text-sm">Triggers pump based on moisture thresholds.</p>
+                </div>
+                <div class="text-center p-4">
+                    <i class="fas fa-server text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Local Dashboard</h3>
+                    <p class="text-gray-600 text-sm">Browser-based UI hosted on the ESP32.</p>
+                </div>
+                <div class="text-center p-4">
+                    <i class="fas fa-hand-pointer text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Manual Override</h3>
+                    <p class="text-gray-600 text-sm">Manually control the watering system via the UI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section id="architecture" class="py-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">System Architecture</h2>
+            <div class="max-w-4xl mx-auto bg-gray-800 text-white p-8 rounded-lg font-mono text-sm leading-loose shadow-lg">
+                <pre>
++--------------------------------------------------+
+|                  USER DEVICE                     |
+|           (Browser - WiFi Connection)            |
++--------------------------------------------------+
+                     ^         | (HTTP/WebSocket)
+                     |         v
++--------------------------------------------------+
+|              PlantCare 360 Main Unit             |
+|--------------------------------------------------|
+| [ ESP32 ]---->[ SENSORS ]--+--[ ACTUATOR ]        |
+| (Web Server) (Moisture,    |   (Relay, Pump)      |
+|              Temp, Light)  +--[ DATA STORAGE ]   |
+|                                (SPIFFS/SD Card)  |
++--------------------------------------------------+
+                </pre>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section id="tech-stack" class="py-20 bg-white rounded-lg shadow-sm scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Technology Stack</h2>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Hardware</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4"><i class="fas fa-microchip text-xl text-green-700 w-6 text-center"></i><span><strong>Microcontroller:</strong> ESP32</span></div>
+                        <div class="flex items-center gap-4"><i class="fas fa-water text-xl text-green-700 w-6 text-center"></i><span><strong>Sensors:</strong> Soil Moisture, DHT22, BH1750</span></div>
+                        <div class="flex items-center gap-4"><i class="fas fa-toggle-on text-xl text-green-700 w-6 text-center"></i><span><strong>Actuator:</strong> 5V Relay Module & 12V Water Pump</span></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Software</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4"><i class="fab fa-arduino text-xl text-green-700 w-6 text-center"></i><span><strong>IDE:</strong> Arduino IDE (C++)</span></div>
+                        <div class="flex items-center gap-4"><i class="fas fa-code text-xl text-green-700 w-6 text-center"></i><span><strong>Dashboard:</strong> HTML, CSS, JavaScript</span></div>
+                        <div class="flex items-center gap-4"><i class="fas fa-chart-bar text-xl text-green-700 w-6 text-center"></i><span><strong>Visualization:</strong> Chart.js</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Advantages and Limitations -->
+        <section class="py-20 scroll-animation">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-green-800">Advantages</h3>
+                    <ul class="space-y-2">
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-green-600 mt-1"></i><span><strong>Enhanced Privacy:</strong> No data leaves your local network.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-green-600 mt-1"></i><span><strong>High Reliability:</strong> Immune to internet or cloud outages.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-green-600 mt-1"></i><span><strong>No Ongoing Costs:</strong> No subscription fees.</span></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-800">Limitations</h3>
+                    <ul class="space-y-2">
+                        <li class="flex gap-3"><i class="fas fa-times-circle text-red-600 mt-1"></i><span><strong>No Remote Access:</strong> Must be on the local Wi-Fi to access.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-times-circle text-red-600 mt-1"></i><span><strong>Limited Data Storage:</strong> Onboard storage is finite.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-times-circle text-red-600 mt-1"></i><span><strong>Scalability:</strong> Managing many devices requires individual connections.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-10 border-t border-gray-200 mt-10">
+        <p class="text-gray-500">&copy; 2025 Hari Prashanna V. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/90', 'shadow-md', 'backdrop-blur-sm');
+                } else {
+                    header.classList.remove('bg-white/90', 'shadow-md', 'backdrop-blur-sm');
+                }
+            });
+            
+            // Scroll animations
+            const scrollElements = document.querySelectorAll('.scroll-animation');
+            const elementInView = (el) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - 100;
+            };
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el)) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>
