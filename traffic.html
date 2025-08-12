@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: AI-Powered Traffic Control</title>
+    <!-- Chosen Palette: Professional Blue & Light Gray -->
+    <!-- Application Structure Plan: The application is designed as a single-page narrative, guiding the user from a high-level overview to technical details and impact. The flow starts with a hero section to grab attention, followed by the core problem/solution, interactive key features, a visual tech stack, and data-driven results. A new interactive section powered by the Gemini API has been added to demonstrate the project's LLM capabilities in real-time, allowing users to generate incident reports and mitigation strategies. -->
+    <!-- Visualization & Content Choices: The key result ('>90% accuracy') is visualized using a Chart.js donut chart (Goal: Inform/Compare) for immediate visual impact. Key features are presented in interactive cards. The new Gemini feature (Goal: Demonstrate/Interact) uses API calls to dynamically generate text for an incident report and a traffic mitigation strategy, making the LLM's role tangible. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+        .accent-blue { color: #007bff; }
+        .bg-accent-blue { background-color: #007bff; }
+        .scroll-animation {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(25px);
+        }
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin: auto;
+            height: 300px;
+            max-height: 300px;
+        }
+        .spinner {
+            border-top-color: #007bff;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold accent-blue">AI Traffic Control</a>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold">
+                <a href="#problem" class="hover:text-blue-600">Problem</a>
+                <a href="#features" class="hover:text-blue-600">Features</a>
+                <a href="#impact" class="hover:text-blue-600">Impact</a>
+                <a href="#gemini-demo" class="hover:text-blue-600">AI Demo</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section class="text-center py-32 md:py-40">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800">AI-Powered Traffic Control for Emergency Response</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+                An intelligent system that leverages computer vision and IoT to detect approaching ambulances, clear their path, and save critical time.
+            </p>
+        </section>
+
+        <!-- Problem & Solution Section -->
+        <section id="problem" class="py-20 scroll-animation">
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-exclamation-triangle text-red-500"></i>The Problem</h3>
+                    <p class="text-gray-600 leading-relaxed">In urban environments, traffic congestion is a major obstacle for emergency vehicles. Every second lost in transit can have life-threatening consequences. Traditional traffic systems lack the intelligence to detect and prioritize these vehicles automatically, leading to dangerous delays.</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-lg border border-blue-200">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-lightbulb accent-blue"></i>The Solution</h3>
+                    <p class="text-gray-700 leading-relaxed">This project provides a green corridor for ambulances. Using a camera feed, it identifies an ambulance up to 100 meters away and immediately instructs the traffic signal ahead to turn green, while turning other intersecting signals red. This ensures a seamless and efficient emergency route.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section id="features" class="py-20 scroll-animation">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Key Features</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md transform hover:-translate-y-2 transition-transform">
+                    <i class="fas fa-video text-3xl accent-blue mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2">Real-Time Ambulance Detection</h3>
+                    <p class="text-sm text-gray-600">Utilizes a camera and OpenCV to instantly identify ambulances with high accuracy.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md transform hover:-translate-y-2 transition-transform">
+                    <i class="fas fa-traffic-light text-3xl accent-blue mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2">Automatic Signal Control</h3>
+                    <p class="text-sm text-gray-600">An ESP32 microcontroller dynamically changes traffic lights to create a clear path.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md transform hover:-translate-y-2 transition-transform">
+                    <i class="fas fa-brain text-3xl accent-blue mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2">LLM-Powered Reporting</h3>
+                    <p class="text-sm text-gray-600">Generates real-time incident summaries and predictive traffic flow analysis.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gemini AI Demo Section -->
+        <section id="gemini-demo" class="py-20 scroll-animation">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">✨ Gemini AI Assistant Demo</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">This is a live demonstration of the LLM capabilities. Click the button to simulate an ambulance detection at a fictional intersection and see how the Gemini API generates an incident report and a traffic mitigation strategy in real-time.</p>
+            <div class="text-center mb-8">
+                <button id="simulate-btn" class="bg-accent-blue text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors">
+                    Simulate Ambulance Detection
+                </button>
+            </div>
+            <div id="gemini-output" class="max-w-4xl mx-auto space-y-8">
+                <div id="loading-spinner" class="hidden text-center">
+                    <div class="spinner w-10 h-10 rounded-full border-4 border-gray-200 mx-auto"></div>
+                    <p class="mt-2 text-gray-600">Contacting Gemini AI...</p>
+                </div>
+                <div id="report-container" class="hidden">
+                    <h3 class="text-2xl font-bold mb-4">Generated Incident Report</h3>
+                    <div id="report-content" class="bg-white p-6 rounded-lg shadow-md text-gray-700 whitespace-pre-wrap"></div>
+                    <div class="text-center mt-6">
+                         <button id="mitigation-btn" class="hidden bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-800 transition-colors">
+                            Suggest Traffic Mitigation Strategy
+                        </button>
+                    </div>
+                </div>
+                <div id="mitigation-container" class="hidden">
+                    <h3 class="text-2xl font-bold mb-4">Suggested Mitigation Strategy</h3>
+                    <div id="mitigation-content" class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-gray-700 whitespace-pre-wrap"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact & Results Section -->
+        <section id="impact" class="py-20 bg-gray-800 text-white rounded-lg scroll-animation">
+            <h2 class="text-4xl font-bold text-center mb-12">Impact & Results</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+                <div class="text-center md:text-left">
+                    <p class="mb-6 text-gray-300">This system has the potential to make a significant real-world impact by drastically reducing ambulance travel times in congested areas.</p>
+                    <div class="space-y-4">
+                        <p><strong class="accent-blue text-lg">Life-Saving Potential:</strong> Directly contributes to faster emergency response, improving patient outcomes.</p>
+                        <p><strong class="accent-blue text-lg">Scalable Solution:</strong> The core technology can be adapted for other emergency vehicles.</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-lg mb-4 text-gray-300">Proven Detection Accuracy</p>
+                    <div class="chart-container">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tech Stack & Role Section -->
+        <section id="tech" class="py-20 scroll-animation">
+             <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center md:text-left">Technology Stack</h2>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">Python & OpenCV</div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">Gemini API</div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">ESP32 Microcontroller</div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">IoT Protocols</div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center md:text-left">My Role</h2>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Led end-to-end system design and hardware setup.</li>
+                        <li>Developed the computer vision model for ambulance detection.</li>
+                        <li>Integrated the Gemini API for intelligent reporting and automation.</li>
+                        <li>Created the full-stack web dashboard for monitoring.</li>
+                    </ul>
+                </div>
+             </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 border-t border-gray-200 mt-10">
+        <p class="text-gray-500">&copy; 2025 Hari Prashanna V. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/90', 'shadow-md', 'backdrop-blur-sm');
+                } else {
+                    header.classList.remove('bg-white/90', 'shadow-md', 'backdrop-blur-sm');
+                }
+            });
+
+            // --- Chart.js Doughnut Chart ---
+            const accuracyData = {
+                datasets: [{ data: [90, 10], backgroundColor: ['#007bff', '#e9ecef'], borderWidth: 0, circumference: 180, rotation: 270 }]
+            };
+            const accuracyConfig = {
+                type: 'doughnut', data: accuracyData, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { enabled: false } }, cutout: '70%' },
+                plugins: [{ id: 'doughnutText', afterDraw(chart) { const { ctx, width, height } = chart; ctx.restore(); const text = '>90%'; ctx.font = 'bold 3rem Roboto Slab'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, width / 2, height / 1.5); ctx.save(); } }]
+            };
+
+            // --- Gemini API Demo ---
+            const simulateBtn = document.getElementById('simulate-btn');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const reportContainer = document.getElementById('report-container');
+            const reportContent = document.getElementById('report-content');
+            const mitigationBtn = document.getElementById('mitigation-btn');
+            const mitigationContainer = document.getElementById('mitigation-container');
+            const mitigationContent = document.getElementById('mitigation-content');
+
+            async function callGeminiAPI(prompt) {
+                const apiKey = ""; // Leave empty, handled by environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                
+                const payload = {
+                    contents: [{ role: "user", parts: [{ text: prompt }] }]
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    }
+                    return "No content received from AI.";
+                } catch (error) {
+                    console.error("Gemini API call failed:", error);
+                    return "Failed to get a response from the AI assistant.";
+                }
+            }
+            
+            simulateBtn.addEventListener('click', async () => {
+                // Reset UI
+                loadingSpinner.classList.remove('hidden');
+                reportContainer.classList.add('hidden');
+                mitigationContainer.classList.add('hidden');
+                mitigationBtn.classList.add('hidden');
+                simulateBtn.disabled = true;
+
+                const reportPrompt = "You are an AI for a smart traffic system. An ambulance has just been detected at the intersection of 'Main St & 1st Ave'. Generate a brief, professional incident report. Include a timestamp, location, event type, and action taken.";
+                const reportText = await callGeminiAPI(reportPrompt);
+                
+                reportContent.textContent = reportText;
+                loadingSpinner.classList.add('hidden');
+                reportContainer.classList.remove('hidden');
+                mitigationBtn.classList.remove('hidden');
+                simulateBtn.disabled = false;
+            });
+
+            mitigationBtn.addEventListener('click', async () => {
+                loadingSpinner.classList.remove('hidden');
+                mitigationBtn.disabled = true;
+
+                const mitigationPrompt = "Following the ambulance passage at 'Main St & 1st Ave', suggest a brief, smart traffic mitigation strategy to prevent congestion. Mention adjusting signal timings for cross-traffic and clearing any resulting backlog. Be concise.";
+                const mitigationText = await callGeminiAPI(mitigationPrompt);
+
+                mitigationContent.textContent = mitigationText;
+                loadingSpinner.classList.add('hidden');
+                mitigationContainer.classList.remove('hidden');
+                mitigationBtn.disabled = false;
+            });
+
+
+            // --- Intersection Observer for Animations ---
+            const scrollElements = document.querySelectorAll('.scroll-animation');
+            const chartElement = document.getElementById('accuracyChart');
+            let chartRendered = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target === chartElement && !chartRendered) {
+                            new Chart(chartElement, accuracyConfig);
+                            chartRendered = true;
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            scrollElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
