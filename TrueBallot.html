@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueBallot - Project Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+        .scroll-animation {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Changed from Green to Blue/Indigo for a "Voting/Trust" theme */
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-800"><i class="fas fa-vote-yea mr-2"></i>TrueBallot</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#introduction" class="text-gray-600 hover:text-blue-700 font-medium">Introduction</a>
+                <a href="#features" class="text-gray-600 hover:text-blue-700 font-medium">Features</a>
+                <a href="#architecture" class="text-gray-600 hover:text-blue-700 font-medium">Architecture</a>
+                <a href="#tech-stack" class="text-gray-600 hover:text-blue-700 font-medium">Tech Stack</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Hero Section -->
+        <section class="text-center py-24 md:py-32 gradient-bg rounded-xl mt-24 text-white shadow-xl">
+            <div class="animate-fade-in-down">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight">TrueBallot</h1>
+                <p class="text-xl mt-6 font-light max-w-2xl mx-auto">A Secure, Transparent, and Efficient E-Voting Platform powered by Modern Web Technologies.</p>
+            </div>
+        </section>
+
+        <!-- Abstract -->
+        <section id="abstract" class="py-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Abstract</h2>
+            <p class="max-w-4xl mx-auto text-center text-gray-600 leading-relaxed text-lg">
+                TrueBallot is a comprehensive electronic voting solution designed to modernize the electoral process. By utilizing a robust <strong>Spring Boot</strong> backend for security and data integrity, coupled with a dynamic <strong>React.js</strong> frontend for an intuitive user experience, TrueBallot ensures that every vote is cast securely, counted accurately, and results are published in real-time. This system eliminates common issues found in traditional paper ballots, such as counting errors, long wait times, and logistical complexities.
+            </p>
+        </section>
+
+        <!-- Introduction -->
+        <section id="introduction" class="py-20 bg-white rounded-lg shadow-sm scroll-animation">
+             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">The Problem & Our Solution</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Traditional voting methods are often plagued by inefficiencies, including slow manual counting, high costs, and susceptibility to human error or tampering. Furthermore, accessibility issues can prevent eligible voters from participating.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed border-l-4 border-blue-500 pl-4">
+                        <strong>TrueBallot</strong> addresses these challenges by digitizing the entire workflow. It provides a secure platform where administrators can manage elections and candidates, while voters can cast their ballots from anywhere. The system leverages <strong>JWT authentication</strong> for security and relational databases for data consistency.
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <!-- Icon representing digital voting -->
+                    <i class="fas fa-laptop-code text-9xl text-blue-500 opacity-80"></i>
+                </div>
+             </div>
+        </section>
+
+        <!-- Objectives -->
+        <section id="objectives" class="py-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Project Objectives</h2>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Security & Integrity</h4>
+                        <p class="text-gray-600 text-sm mt-1">Implement robust authentication (Spring Security + JWT) to ensure only eligible voters can vote exactly once.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-bolt text-2xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Real-Time Efficiency</h4>
+                        <p class="text-gray-600 text-sm mt-1">Automate the tallying process to provide instant, error-free election results immediately after polls close.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-users text-2xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">User Accessibility</h4>
+                        <p class="text-gray-600 text-sm mt-1">Create an intuitive React-based interface that simplifies the voting experience for users of all technical levels.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-tasks text-2xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Election Management</h4>
+                        <p class="text-gray-600 text-sm mt-1">Provide comprehensive tools for administrators to create elections, manage candidates, and oversee the process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="py-20 bg-white rounded-lg shadow-sm scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Core Features</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 border rounded-lg hover:border-blue-500 transition-colors">
+                    <i class="fas fa-user-lock text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Secure Auth</h3>
+                    <p class="text-gray-600 text-sm mt-2">JWT-based login ensures secure session management for all users.</p>
+                </div>
+                <div class="text-center p-6 border rounded-lg hover:border-blue-500 transition-colors">
+                    <i class="fas fa-person-booth text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Candidate Mgmt</h3>
+                    <p class="text-gray-600 text-sm mt-2">Admins can easily add, update, or remove candidates for specific elections.</p>
+                </div>
+                <div class="text-center p-6 border rounded-lg hover:border-blue-500 transition-colors">
+                    <i class="fas fa-chart-pie text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Live Results</h3>
+                    <p class="text-gray-600 text-sm mt-2">Dynamic charts visualization for instant insight into election outcomes.</p>
+                </div>
+                <div class="text-center p-6 border rounded-lg hover:border-blue-500 transition-colors">
+                    <i class="fas fa-mobile-alt text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-lg">Responsive UI</h3>
+                    <p class="text-gray-600 text-sm mt-2">Fully responsive design using Tailwind CSS that works on mobile and desktop.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section id="architecture" class="py-20 scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">System Architecture</h2>
+            <div class="max-w-4xl mx-auto bg-gray-900 text-green-400 p-8 rounded-lg font-mono text-sm leading-loose shadow-lg overflow-x-auto">
+<pre>
++---------------------+       +----------------------+       +---------------------+
+|   CLIENT LAYER      |       |    SERVER LAYER      |       |    DATA LAYER       |
+| (React Frontend)    |       | (Spring Boot API)    |       |  (MySQL Database)   |
++---------------------+       +----------------------+       +---------------------+
+|                     |       |                      |       |                     |
+|  [ User Interface ] |       |  [ Auth Controller ] |       |  [ Users Table ]    |
+|   - Login Page      |<----->|   - Login/Register   |<----->|                     |
+|   - Voting Page     | HTTP  |                      | JDBC  |                     |
+|   - Admin Panel     | JSON  |  [ Vote Controller ] |       |  [ Votes Table ]    |
+|                     |       |   - Cast Vote        |<----->|                     |
+|  [ State Mgmt ]     |       |   - Tally Results    |       |                     |
+|   (Zustand/Context) |       |                      |       |  [ Elections Table ]|
+|                     |       |  [ Security Config ] |       |                     |
++---------------------+       |   (JWT Filter)       |       +---------------------+
+                              +----------------------+
+</pre>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section id="tech-stack" class="py-20 bg-white rounded-lg shadow-sm scroll-animation">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Technology Stack</h2>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center border-b-2 border-blue-500 pb-2 inline-block">Backend (Server)</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                            <i class="fab fa-java text-xl text-blue-700 w-8 text-center"></i>
+                            <div>
+                                <span class="font-bold block">Java Spring Boot</span>
+                                <span class="text-xs text-gray-500">Core application framework & REST API</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                            <i class="fas fa-database text-xl text-blue-700 w-8 text-center"></i>
+                            <div>
+                                <span class="font-bold block">MySQL & Hibernate</span>
+                                <span class="text-xs text-gray-500">Relational database and ORM</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                            <i class="fas fa-key text-xl text-blue-700 w-8 text-center"></i>
+                            <div>
+                                <span class="font-bold block">Spring Security & JWT</span>
+                                <span class="text-xs text-gray-500">Authentication and Authorization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center border-b-2 border-blue-500 pb-2 inline-block">Frontend (Client)</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                            <i class="fab fa-react text-xl text-blue-700 w-8 text-center"></i>
+                            <div>
+                                <span class="font-bold block">React.js</span>
+                                <span class="text-xs text-gray-500">Component-based UI library</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                            <i class="fab fa-css3-alt text-xl text-blue-700 w-8 text-center"></i>
+                            <div>
+                                <span class="font-bold block">Tailwind CSS</span>
+                                <span class="text-xs text-gray-500">Utility-first styling framework</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                            <i class="fas fa-exchange-alt text-xl text-blue-700 w-8 text-center"></i>
+                            <div>
+                                <span class="font-bold block">Axios</span>
+                                <span class="text-xs text-gray-500">HTTP client for API communication</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Advantages and Limitations -->
+        <section class="py-20 scroll-animation">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-green-800"><i class="fas fa-thumbs-up mr-2"></i>Advantages</h3>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i><span><strong>Transparency:</strong> Digital records reduce the risk of human error in counting.</span></li>
+                        <li class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i><span><strong>Speed:</strong> Results are available almost instantly after the election concludes.</span></li>
+                        <li class="flex gap-3 items-start"><i class="fas fa-check-circle text-green-600 mt-1"></i><span><strong>Scalability:</strong> Can handle small club elections or large organizational polls.</span></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-800"><i class="fas fa-exclamation-triangle mr-2"></i>Limitations</h3>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3 items-start"><i class="fas fa-times-circle text-red-600 mt-1"></i><span><strong>Internet Dependency:</strong> Requires a stable network connection for the client-server architecture.</span></li>
+                        <li class="flex gap-3 items-start"><i class="fas fa-times-circle text-red-600 mt-1"></i><span><strong>Device Requirement:</strong> Voters need access to a smartphone or computer.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-10 bg-gray-800 text-gray-400 mt-10">
+        <p>&copy; 2025 Hari Prashanna V. All Rights Reserved.</p>
+        <p class="text-xs mt-2">Built with Spring Boot & React</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/95', 'shadow-md', 'backdrop-blur-sm');
+                } else {
+                    header.classList.remove('bg-white/95', 'shadow-md', 'backdrop-blur-sm');
+                }
+            });
+            
+            // Scroll animations
+            const scrollElements = document.querySelectorAll('.scroll-animation');
+            const elementInView = (el) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - 100;
+            };
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el)) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>
