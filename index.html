@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Google Fonts: Poppins for headings (Playful), Inter for body (Readable) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
@@ -18,8 +18,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
             overflow-x: hidden;
         }
         
@@ -27,7 +27,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* --- Animated Gradient Text --- */
+        /* --- Animated Gradient Text (Glow effect) --- */
         .gradient-text {
             background: linear-gradient(to right, #2dd4bf, #818cf8, #fb7185, #2dd4bf);
             background-size: 300% auto;
@@ -49,12 +49,12 @@
             100% { transform: translateY(0px); }
         }
 
-        /* --- Background Blobs --- */
+        /* --- Background Blobs (Adjusted for Dark Mode) --- */
         .blob {
             position: absolute;
             filter: blur(80px);
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.25;
             animation: blob-bounce 10s infinite alternate;
         }
         @keyframes blob-bounce {
@@ -75,12 +75,12 @@
         .skill-tab {
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
-            color: #64748b;
+            color: #94a3b8; /* Slate 400 */
         }
         .skill-tab.active-tab {
-            color: #0d9488;
-            border-color: #0d9488;
-            background-color: rgba(13, 148, 136, 0.05);
+            color: #2dd4bf; /* Teal 400 */
+            border-color: #2dd4bf;
+            background-color: rgba(45, 212, 191, 0.1);
             border-radius: 8px 8px 0 0;
         }
         .skill-card:hover {
@@ -93,7 +93,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
         }
         .project-card:hover .project-card-inner { transform: rotateY(180deg); }
@@ -123,7 +123,7 @@
             display: inline-block;
             width: 3px;
             height: 1.2em;
-            background-color: #0d9488;
+            background-color: #2dd4bf;
             margin-left: 4px;
             vertical-align: middle;
             animation: blink 1s infinite;
@@ -132,32 +132,33 @@
 
         /* --- Custom Scrollbar --- */
         ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(#2dd4bf, #818cf8); border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #0f766e; }
     </style>
 </head>
-<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
+<body class="antialiased selection:bg-teal-500 selection:text-white">
 
     <!-- Background Decorative Blobs -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div class="blob bg-teal-200 w-96 h-96 rounded-full top-0 left-0 mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="blob bg-purple-200 w-96 h-96 rounded-full top-0 right-0 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="blob bg-rose-200 w-96 h-96 rounded-full bottom-0 left-20 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <!-- Changed mix-blend to screen for dark mode glowing effect -->
+        <div class="blob bg-teal-500 w-96 h-96 rounded-full top-0 left-0 mix-blend-screen filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="blob bg-purple-500 w-96 h-96 rounded-full top-0 right-0 mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="blob bg-rose-500 w-96 h-96 rounded-full bottom-0 left-20 mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
     </div>
 
     <!-- Header -->
-    <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 backdrop-blur-sm bg-white/70 border-b border-transparent">
+    <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 backdrop-blur-sm bg-slate-900/70 border-b border-transparent">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="nav-logo text-3xl font-extrabold gradient-text tracking-tight">HP.</a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-1 items-center bg-white/50 px-4 py-2 rounded-full border border-white/50 shadow-sm">
-                <a href="#about" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">About</a>
-                <a href="#skills" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">Skills</a>
-                <a href="#projects" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">Projects</a>
-                <a href="#achievements" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">Stats</a>
-                <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-teal-400 to-blue-500 text-white font-bold rounded-full shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-105 transition duration-300 transform">Hire Me</a>
+            <div class="hidden md:flex space-x-1 items-center bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700 shadow-sm">
+                <a href="#about" class="px-4 py-2 text-slate-300 hover:text-teal-400 font-medium rounded-full hover:bg-slate-800 transition duration-300">About</a>
+                <a href="#skills" class="px-4 py-2 text-slate-300 hover:text-teal-400 font-medium rounded-full hover:bg-slate-800 transition duration-300">Skills</a>
+                <a href="#projects" class="px-4 py-2 text-slate-300 hover:text-teal-400 font-medium rounded-full hover:bg-slate-800 transition duration-300">Projects</a>
+                <a href="#achievements" class="px-4 py-2 text-slate-300 hover:text-teal-400 font-medium rounded-full hover:bg-slate-800 transition duration-300">Stats</a>
+                <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-bold rounded-full shadow-lg shadow-teal-900/50 hover:shadow-teal-500/50 hover:scale-105 transition duration-300 transform">Hire Me</a>
             </div>
         </nav>
     </header>
@@ -169,24 +170,24 @@
             <div class="container mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
                 <!-- Text Content -->
                 <div class="md:w-1/2 text-center md:text-left z-10">
-                    <div class="inline-block px-4 py-2 mb-4 bg-teal-100 text-teal-700 rounded-full font-bold text-sm shadow-sm scroll-animation">
+                    <div class="inline-block px-4 py-2 mb-4 bg-slate-800 text-teal-400 rounded-full font-bold text-sm shadow-sm border border-slate-700 scroll-animation">
                         👋 Welcome to my creative space
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-800 mb-6 leading-tight scroll-animation">
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight scroll-animation">
                         Hi, I'm <br>
                         <span class="gradient-text">Hari Prashanna</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-gray-600 mb-8 h-20 md:h-auto scroll-animation">
-                        I build <span id="typing-text" class="font-semibold text-gray-800"></span><span class="typing-cursor"></span>
+                    <p class="text-xl md:text-2xl text-slate-400 mb-8 h-20 md:h-auto scroll-animation">
+                        I build <span id="typing-text" class="font-semibold text-slate-200"></span><span class="typing-cursor"></span>
                     </p>
                     <div class="flex flex-wrap justify-center md:justify-start gap-4 scroll-animation">
-                        <a href="#projects" class="px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition duration-300 flex items-center gap-2">
+                        <a href="#projects" class="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 hover:bg-teal-50 transition duration-300 flex items-center gap-2">
                             <i class="fas fa-project-diagram"></i> View Projects
                         </a>
                         <div class="flex gap-4 items-center px-6">
-                            <a href="https://www.linkedin.com/in/hari-prashanna-v-725790333" target="_blank" class="text-gray-400 hover:text-blue-600 transition text-3xl transform hover:scale-125"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://leetcode.com/u/HariPrashannaV/" target="_blank" class="text-gray-400 hover:text-yellow-500 transition text-3xl transform hover:scale-125"><i class="fas fa-code"></i></a>
-                            <a href="mailto:harishvejayraj@gmail.com" class="text-gray-400 hover:text-red-500 transition text-3xl transform hover:scale-125"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/hari-prashanna-v-725790333" target="_blank" class="text-slate-400 hover:text-blue-400 transition text-3xl transform hover:scale-125"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://leetcode.com/u/HariPrashannaV/" target="_blank" class="text-slate-400 hover:text-yellow-400 transition text-3xl transform hover:scale-125"><i class="fas fa-code"></i></a>
+                            <a href="mailto:harishvejayraj@gmail.com" class="text-slate-400 hover:text-rose-400 transition text-3xl transform hover:scale-125"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -195,38 +196,38 @@
                 <div class="md:w-1/2 flex justify-center z-10 scroll-animation">
                     <div class="relative w-72 h-72 md:w-96 md:h-96 float-anim">
                         <!-- Decorative shapes behind image -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-teal-400 to-purple-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
-                        <div class="absolute inset-0 bg-white rounded-full m-2 z-0"></div>
-                        <img src="image.jpg" alt="Hari Prashanna" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-white shadow-2xl hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-teal-500 to-purple-600 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+                        <div class="absolute inset-0 bg-slate-800 rounded-full m-2 z-0"></div>
+                        <img src="image.jpg" alt="Hari Prashanna" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-slate-700 shadow-2xl hover:scale-105 transition duration-500">
                         
                         <!-- Floating Badges -->
-                        <div class="absolute top-10 -right-4 bg-white p-3 rounded-2xl shadow-xl animate-bounce" style="animation-delay: 1s;">
+                        <div class="absolute top-10 -right-4 bg-slate-800 border border-slate-700 p-3 rounded-2xl shadow-xl animate-bounce" style="animation-delay: 1s;">
                             <i class="fas fa-bolt text-yellow-400 text-2xl"></i>
                         </div>
-                        <div class="absolute bottom-10 -left-4 bg-white p-3 rounded-2xl shadow-xl animate-bounce" style="animation-delay: 2s;">
-                            <i class="fas fa-code text-teal-500 text-2xl"></i>
+                        <div class="absolute bottom-10 -left-4 bg-slate-800 border border-slate-700 p-3 rounded-2xl shadow-xl animate-bounce" style="animation-delay: 2s;">
+                            <i class="fas fa-code text-teal-400 text-2xl"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section (Updated Summary) -->
         <section id="about" class="py-24 container mx-auto px-6 scroll-animation">
-            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl border border-white/50 relative overflow-hidden">
+            <div class="bg-slate-800/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl border border-slate-700 relative overflow-hidden">
                 <!-- Decoration -->
-                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-32 h-32 bg-yellow-100 rounded-full blur-2xl"></div>
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-32 h-32 bg-teal-500/20 rounded-full blur-2xl"></div>
                 
-                <h2 class="text-4xl font-bold text-center mb-8"><span class="border-b-4 border-teal-400">About Me</span></h2>
-                <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed text-center space-y-6">
+                <h2 class="text-4xl font-bold text-center mb-8 text-white"><span class="border-b-4 border-teal-500">About Me</span></h2>
+                <div class="max-w-4xl mx-auto text-lg text-slate-300 leading-relaxed text-center space-y-6">
                     <p>
-                        🎓 I'm an <strong class="text-teal-600">Electrical and Electronics Engineering</strong> student with a rebel heart for code. While my degree says "Hardware," my passion screams <strong class="text-purple-600">"Software & AI"</strong>.
+                        I am <strong class="text-teal-400">Hari Prashanna V</strong>, a pre-final year EEE student at Sri Eshwar College of Engineering, passionate about solving complex problems through Machine Learning and Full-Stack development.
                     </p>
                     <p>
-                        🚀 I thrive at the intersection where <span class="bg-teal-100 px-2 py-1 rounded text-teal-800 font-semibold">Silicon meets Syntax</span>. From building full-stack web apps to programming ESP32 microcontrollers for IoT, I love creating systems that interact with the real world.
+                        With strong expertise in Python, C++, and SQL, I specialize in building intelligent systems using deep learning frameworks like YOLOv8 and TensorFlow. My practical experience includes developing <strong class="text-rose-400">'AutoSignal,'</strong> an AI-driven emergency vehicle detection system, and <strong class="text-blue-400">'TrueBallot,'</strong> a secure online voting platform backed by robust database architecture.
                     </p>
                     <p>
-                        💡 Currently leveraging my experience from <strong class="text-gray-900">RedMind Technologies</strong> to solve complex problems with clean code and creative engineering.
+                         My problem-solving skills are demonstrated by over 900 LeetCode solutions with a 1750 rating, alongside NPTEL certifications in Data Science. I am eager to contribute my technical proficiency and analytical mindset to your organization.
                     </p>
                 </div>
             </div>
@@ -234,7 +235,7 @@
 
         <!-- Skills Section -->
         <section id="skills" class="py-24 container mx-auto px-6 scroll-animation">
-            <h2 class="text-4xl font-bold text-center mb-12">My <span class="text-purple-600">Superpowers</span></h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">My <span class="text-purple-400">Superpowers</span></h2>
             <div class="max-w-5xl mx-auto">
                 <!-- Custom Tabs -->
                 <div class="flex justify-center mb-10 space-x-2 md:space-x-8">
@@ -257,32 +258,32 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-24 bg-gradient-to-b from-transparent to-white/50 scroll-animation">
+        <section id="projects" class="py-24 bg-gradient-to-b from-transparent to-slate-800/50 scroll-animation">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-16">Featured <span class="text-rose-500">Projects</span></h2>
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">Featured <span class="text-rose-400">Projects</span></h2>
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
                     
                     <!-- TrueBallot Card (Blue Theme) -->
                     <div class="project-card h-96 w-full cursor-pointer group">
-                        <div class="project-card-inner shadow-2xl shadow-blue-200 rounded-2xl">
+                        <div class="project-card-inner shadow-2xl shadow-blue-900/40 rounded-2xl">
                             <!-- Front -->
-                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-blue-50">
-                                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600 text-3xl group-hover:scale-110 transition-transform">
+                            <div class="project-card-front bg-slate-800 p-8 flex flex-col items-center justify-center text-center border border-slate-700">
+                                <div class="w-16 h-16 bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6 text-blue-400 text-3xl group-hover:scale-110 transition-transform">
                                     <i class="fas fa-vote-yea"></i>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-3 text-gray-800">TrueBallot</h3>
-                                <p class="text-gray-500">Secure E-Voting Platform</p>
+                                <h3 class="text-2xl font-bold mb-3 text-slate-100">TrueBallot</h3>
+                                <p class="text-slate-400">Secure E-Voting Platform</p>
                                 <div class="mt-6 flex flex-wrap justify-center gap-2">
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">Spring Boot</span>
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">React</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">Spring Boot</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">React</span>
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-8 flex flex-col justify-center items-center text-center">
+                            <div class="project-card-back bg-gradient-to-br from-blue-700 to-indigo-800 text-white p-8 flex flex-col justify-center items-center text-center">
                                 <h3 class="text-xl font-bold mb-4">Election Integrity</h3>
-                                <p class="mb-6 opacity-90">A robust full-stack system using JWT for security, ensuring every vote is counted accurately and transparently.</p>
-                                <a href="TrueBallot.html" target="_blank" class="bg-white text-blue-700 font-bold py-3 px-6 rounded-full hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
+                                <p class="mb-6 opacity-90 text-sm">A robust full-stack system using JWT for security, ensuring every vote is counted accurately.</p>
+                                <a href="TrueBallot.html" target="_blank" class="bg-white text-blue-800 font-bold py-3 px-6 rounded-full hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -291,24 +292,24 @@
 
                     <!-- PlantCare 360 Card (Teal Theme) -->
                     <div class="project-card h-96 w-full cursor-pointer group">
-                        <div class="project-card-inner shadow-2xl shadow-teal-200 rounded-2xl">
+                        <div class="project-card-inner shadow-2xl shadow-teal-900/40 rounded-2xl">
                             <!-- Front -->
-                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-teal-50">
-                                <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mb-6 text-teal-600 text-3xl group-hover:scale-110 transition-transform">
+                            <div class="project-card-front bg-slate-800 p-8 flex flex-col items-center justify-center text-center border border-slate-700">
+                                <div class="w-16 h-16 bg-teal-900/30 rounded-2xl flex items-center justify-center mb-6 text-teal-400 text-3xl group-hover:scale-110 transition-transform">
                                     <i class="fas fa-leaf"></i>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-3 text-gray-800">PlantCare 360</h3>
-                                <p class="text-gray-500">Autonomous Irrigation</p>
+                                <h3 class="text-2xl font-bold mb-3 text-slate-100">PlantCare 360</h3>
+                                <p class="text-slate-400">Autonomous Irrigation</p>
                                 <div class="mt-6 flex flex-wrap justify-center gap-2">
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">ESP32</span>
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">IoT</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">ESP32</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">IoT</span>
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-teal-500 to-emerald-600 text-white p-8 flex flex-col justify-center items-center text-center">
+                            <div class="project-card-back bg-gradient-to-br from-teal-600 to-emerald-700 text-white p-8 flex flex-col justify-center items-center text-center">
                                 <h3 class="text-xl font-bold mb-4">Smart Gardening</h3>
-                                <p class="mb-6 opacity-90">Local-first smart plant care system with real-time dashboards and automated watering logic.</p>
-                                <a href="plantcare360.html" target="_blank" class="bg-white text-teal-700 font-bold py-3 px-6 rounded-full hover:bg-teal-50 hover:scale-105 transition-all shadow-lg">
+                                <p class="mb-6 opacity-90 text-sm">Local-first smart plant care system with real-time dashboards and automated watering logic.</p>
+                                <a href="plantcare360.html" target="_blank" class="bg-white text-teal-800 font-bold py-3 px-6 rounded-full hover:bg-teal-50 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -317,50 +318,50 @@
 
                     <!-- Ambulance Detection (Rose Theme) -->
                     <div class="project-card h-96 w-full cursor-pointer group">
-                        <div class="project-card-inner shadow-2xl shadow-rose-200 rounded-2xl">
+                        <div class="project-card-inner shadow-2xl shadow-rose-900/40 rounded-2xl">
                             <!-- Front -->
-                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-rose-50">
-                                <div class="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-6 text-rose-600 text-3xl group-hover:scale-110 transition-transform">
+                            <div class="project-card-front bg-slate-800 p-8 flex flex-col items-center justify-center text-center border border-slate-700">
+                                <div class="w-16 h-16 bg-rose-900/30 rounded-2xl flex items-center justify-center mb-6 text-rose-400 text-3xl group-hover:scale-110 transition-transform">
                                     <i class="fas fa-ambulance"></i>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-3 text-gray-800">Smart Traffic AI</h3>
-                                <p class="text-gray-500">Ambulance Detection System</p>
+                                <h3 class="text-2xl font-bold mb-3 text-slate-100">Smart Traffic AI</h3>
+                                <p class="text-slate-400">Ambulance Detection</p>
                                 <div class="mt-6 flex flex-wrap justify-center gap-2">
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">YOLOv8</span>
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">Python</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">YOLOv8</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">Python</span>
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-rose-500 to-pink-600 text-white p-8 flex flex-col justify-center items-center text-center">
+                            <div class="project-card-back bg-gradient-to-br from-rose-600 to-pink-700 text-white p-8 flex flex-col justify-center items-center text-center">
                                 <h3 class="text-xl font-bold mb-4">Saving Lives</h3>
-                                <p class="mb-6 opacity-90">AI-powered traffic signal control that clears lanes for emergency vehicles using computer vision.</p>
-                                <a href="traffic.html" target="_blank" class="bg-white text-rose-700 font-bold py-3 px-6 rounded-full hover:bg-rose-50 hover:scale-105 transition-all shadow-lg">
+                                <p class="mb-6 opacity-90 text-sm">AI-powered traffic signal control that clears lanes for emergency vehicles using computer vision.</p>
+                                <a href="traffic.html" target="_blank" class="bg-white text-rose-800 font-bold py-3 px-6 rounded-full hover:bg-rose-50 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Spotify Project (Green/Dark Theme) -->
+                    <!-- Spotify Project (Darker Theme) -->
                     <div class="project-card h-96 w-full cursor-pointer group lg:col-start-2">
-                         <div class="project-card-inner shadow-2xl shadow-gray-300 rounded-2xl">
+                         <div class="project-card-inner shadow-2xl shadow-slate-900 rounded-2xl">
                             <!-- Front -->
-                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-gray-50">
-                                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 text-green-600 text-3xl group-hover:scale-110 transition-transform">
+                            <div class="project-card-front bg-slate-800 p-8 flex flex-col items-center justify-center text-center border border-slate-700">
+                                <div class="w-16 h-16 bg-green-900/30 rounded-2xl flex items-center justify-center mb-6 text-green-400 text-3xl group-hover:scale-110 transition-transform">
                                     <i class="fab fa-spotify"></i>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-3 text-gray-800">Playlist Downloader</h3>
-                                <p class="text-gray-500">Spotify GUI Tool</p>
+                                <h3 class="text-2xl font-bold mb-3 text-slate-100">Playlist Downloader</h3>
+                                <p class="text-slate-400">Spotify GUI Tool</p>
                                 <div class="mt-6 flex flex-wrap justify-center gap-2">
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">Tkinter</span>
-                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">API</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">Tkinter</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">API</span>
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-gray-800 to-gray-900 text-white p-8 flex flex-col justify-center items-center text-center">
+                            <div class="project-card-back bg-gradient-to-br from-green-700 to-emerald-800 text-white p-8 flex flex-col justify-center items-center text-center">
                                 <h3 class="text-xl font-bold mb-4">Offline Music</h3>
-                                <p class="mb-6 opacity-90">A desktop GUI that connects to Spotify API to download playlists for offline use.</p>
-                                <a href="spotify.html" target="_blank" class="bg-white text-gray-900 font-bold py-3 px-6 rounded-full hover:bg-gray-200 hover:scale-105 transition-all shadow-lg">
+                                <p class="mb-6 opacity-90 text-sm">A desktop GUI that connects to Spotify API to download playlists for offline use.</p>
+                                <a href="spotify.html" target="_blank" class="bg-white text-green-900 font-bold py-3 px-6 rounded-full hover:bg-green-50 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -373,18 +374,18 @@
 
         <!-- Achievements Section -->
         <section id="achievements" class="py-24 container mx-auto px-6 scroll-animation">
-            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="bg-slate-800/80 rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center border border-slate-700">
                 <div class="md:w-1/2 w-full">
-                    <h2 class="text-4xl font-bold mb-6 text-gray-800">LeetCode <span class="text-yellow-500">Stats</span></h2>
-                    <p class="text-gray-600 mb-8">Consistency is key. I've solved nearly 1000 problems, maintaining a top-tier global ranking.</p>
+                    <h2 class="text-4xl font-bold mb-6 text-white">LeetCode <span class="text-yellow-400">Stats</span></h2>
+                    <p class="text-slate-300 mb-8">Consistency is key. I've solved nearly 1000 problems, maintaining a top-tier global ranking.</p>
                     <div class="flex gap-8 mb-8">
                         <div class="text-center">
-                            <p class="text-4xl font-extrabold text-gray-800">1814</p>
-                            <p class="text-sm text-gray-500 uppercase tracking-wide">Rating</p>
+                            <p class="text-4xl font-extrabold text-white">1814</p>
+                            <p class="text-sm text-slate-500 uppercase tracking-wide">Rating</p>
                         </div>
-                        <div class="text-center border-l border-gray-200 pl-8">
-                            <p class="text-4xl font-extrabold text-teal-600">Top 7%</p>
-                            <p class="text-sm text-gray-500 uppercase tracking-wide">Global Rank</p>
+                        <div class="text-center border-l border-slate-600 pl-8">
+                            <p class="text-4xl font-extrabold text-teal-400">Top 7%</p>
+                            <p class="text-sm text-slate-500 uppercase tracking-wide">Global Rank</p>
                         </div>
                     </div>
                 </div>
@@ -398,42 +399,42 @@
 
         <!-- Certifications -->
         <section class="py-20 text-center scroll-animation">
-            <h2 class="text-3xl font-bold mb-8">Verified <span class="text-teal-600">Credentials</span></h2>
-            <a href="https://certficate.vercel.app/" target="_blank" class="inline-flex items-center gap-3 bg-white border-2 border-teal-500 text-teal-600 font-bold py-4 px-10 rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-teal-500/30 transform hover:-translate-y-1">
+            <h2 class="text-3xl font-bold mb-8 text-white">Verified <span class="text-teal-400">Credentials</span></h2>
+            <a href="https://certficate.vercel.app/" target="_blank" class="inline-flex items-center gap-3 bg-slate-800 border-2 border-teal-500 text-teal-400 font-bold py-4 px-10 rounded-full hover:bg-teal-500 hover:text-slate-900 transition-all duration-300 shadow-lg hover:shadow-teal-500/30 transform hover:-translate-y-1">
                 <i class="fas fa-certificate text-xl"></i> View All Certificates
             </a>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-24 bg-gray-900 text-white relative overflow-hidden">
+        <section id="contact" class="py-24 bg-black/50 text-white relative overflow-hidden">
             <!-- Footer Decoration -->
-             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 via-purple-500 to-rose-500"></div>
+             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-purple-500 to-rose-500"></div>
 
             <div class="container mx-auto px-6 relative z-10 text-center">
                 <h2 class="text-4xl font-bold mb-12">Let's Build Something <span class="text-teal-400">Amazing</span></h2>
                 
                 <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-                    <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition duration-300 group cursor-pointer">
-                        <div class="w-14 h-14 bg-gray-700 group-hover:bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                    <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-700 transition duration-300 group cursor-pointer border border-slate-700">
+                        <div class="w-14 h-14 bg-slate-700 group-hover:bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
                             <i class="fas fa-map-marker-alt text-2xl"></i>
                         </div>
-                        <p class="text-gray-300">Salem, India</p>
+                        <p class="text-slate-300">Salem, India</p>
                     </div>
-                    <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition duration-300 group cursor-pointer">
-                        <div class="w-14 h-14 bg-gray-700 group-hover:bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                    <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-700 transition duration-300 group cursor-pointer border border-slate-700">
+                        <div class="w-14 h-14 bg-slate-700 group-hover:bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
                             <i class="fas fa-phone text-2xl"></i>
                         </div>
-                        <p class="text-gray-300">+91 96555 60484</p>
+                        <p class="text-slate-300">+91 96555 60484</p>
                     </div>
-                    <a href="mailto:harishvejayraj@gmail.com" class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition duration-300 group cursor-pointer">
-                        <div class="w-14 h-14 bg-gray-700 group-hover:bg-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                    <a href="mailto:harishvejayraj@gmail.com" class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-700 transition duration-300 group cursor-pointer border border-slate-700">
+                        <div class="w-14 h-14 bg-slate-700 group-hover:bg-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
                             <i class="fas fa-envelope text-2xl"></i>
                         </div>
-                        <p class="text-gray-300">harishvejayraj@gmail.com</p>
+                        <p class="text-slate-300">harishvejayraj@gmail.com</p>
                     </a>
                 </div>
 
-                <p class="text-gray-500 text-sm">&copy; 2025 Hari Prashanna V. Crafted with <i class="fas fa-heart text-rose-500 animate-pulse"></i> and Code.</p>
+                <p class="text-slate-500 text-sm">&copy; 2025 Hari Prashanna V. Crafted with <i class="fas fa-heart text-rose-500 animate-pulse"></i> and Code.</p>
             </div>
         </section>
 
@@ -478,36 +479,35 @@
                 if (window.scrollY > 20) {
                     header.classList.add('shadow-md', 'py-2');
                     header.classList.remove('py-4', 'border-transparent');
-                    header.classList.add('border-gray-100');
+                    header.classList.add('border-slate-800');
                 } else {
-                    header.classList.remove('shadow-md', 'py-2', 'border-gray-100');
+                    header.classList.remove('shadow-md', 'py-2', 'border-slate-800');
                     header.classList.add('py-4', 'border-transparent');
                 }
             });
 
             // Skills Data with Colors
-            // Added specific colors for icons to make it playful
             const skills = {
                 programming: { 
-                    'Python': {icon: 'fab fa-python', color: 'text-yellow-500'}, 
-                    'JavaScript': {icon: 'fab fa-js-square', color: 'text-yellow-400'}, 
+                    'Python': {icon: 'fab fa-python', color: 'text-yellow-400'}, 
+                    'JavaScript': {icon: 'fab fa-js-square', color: 'text-yellow-300'}, 
                     'React': {icon: 'fab fa-react', color: 'text-blue-400'}, 
                     'HTML': {icon: 'fab fa-html5', color: 'text-orange-500'}, 
                     'CSS': {icon: 'fab fa-css3-alt', color: 'text-blue-500'}, 
-                    'SQL': {icon: 'fas fa-database', color: 'text-gray-600'}, 
-                    'Flask': {icon: 'fas fa-server', color: 'text-gray-800'}, 
-                    'FastAPI': {icon: 'fas fa-rocket', color: 'text-teal-500'} 
+                    'SQL': {icon: 'fas fa-database', color: 'text-slate-400'}, 
+                    'Flask': {icon: 'fas fa-server', color: 'text-slate-200'}, 
+                    'FastAPI': {icon: 'fas fa-rocket', color: 'text-teal-400'} 
                 },
                 iot: { 
                     'ESP32': {icon: 'fas fa-microchip', color: 'text-red-500'}, 
-                    'NRF24L01': {icon: 'fas fa-broadcast-tower', color: 'text-blue-600'}, 
-                    'Sensors': {icon: 'fas fa-temperature-high', color: 'text-orange-500'}, 
-                    'Embedded C': {icon: 'fas fa-code', color: 'text-purple-600'} 
+                    'NRF24L01': {icon: 'fas fa-broadcast-tower', color: 'text-blue-500'}, 
+                    'Sensors': {icon: 'fas fa-temperature-high', color: 'text-orange-400'}, 
+                    'Embedded C': {icon: 'fas fa-code', color: 'text-purple-400'} 
                 },
                 db: { 
                     'Firebase': {icon: 'fas fa-fire', color: 'text-yellow-500'}, 
-                    'MySQL': {icon: 'fas fa-table', color: 'text-blue-700'}, 
-                    'OpenAI': {icon: 'fas fa-robot', color: 'text-teal-600'}, 
+                    'MySQL': {icon: 'fas fa-table', color: 'text-blue-600'}, 
+                    'OpenAI': {icon: 'fas fa-robot', color: 'text-teal-500'}, 
                     'REST APIs': {icon: 'fas fa-exchange-alt', color: 'text-pink-500'} 
                 }
             };
@@ -518,12 +518,12 @@
                     if(container) {
                         for(const [name, data] of Object.entries(skills[category])) {
                             const skillEl = document.createElement('div');
-                            skillEl.className = 'skill-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-3 transition-all duration-300';
+                            skillEl.className = 'skill-card bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-700 flex flex-col items-center gap-3 transition-all duration-300 hover:bg-slate-700';
                             skillEl.innerHTML = `
-                                <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                                <div class="w-12 h-12 bg-slate-700/50 rounded-full flex items-center justify-center">
                                     <i class="${data.icon} text-3xl ${data.color}"></i>
                                 </div>
-                                <span class="font-bold text-gray-700">${name}</span>
+                                <span class="font-bold text-slate-300">${name}</span>
                             `;
                             container.appendChild(skillEl);
                         }
@@ -559,13 +559,14 @@
             const ctx = document.getElementById('leetcodeChart');
             if(ctx) {
                 new Chart(ctx, {
-                    type: 'doughnut', // Switched to Doughnut for a cooler look
+                    type: 'doughnut',
                     data: {
                         labels: ['Easy', 'Medium', 'Hard'],
                         datasets: [{
                             data: [650, 299, 25],
-                            backgroundColor: ['#2dd4bf', '#fb7185', '#1e293b'],
-                            borderWidth: 0,
+                            backgroundColor: ['#2dd4bf', '#fb7185', '#64748b'], // Updated Hard color to Slate-500
+                            borderColor: '#0f172a', // Match bg color
+                            borderWidth: 2,
                             hoverOffset: 10
                         }]
                     },
@@ -573,7 +574,7 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { position: 'bottom', labels: { font: { family: 'Poppins' } } }
+                            legend: { position: 'bottom', labels: { font: { family: 'Poppins' }, color: '#cbd5e1' } } // Light text
                         },
                         cutout: '70%'
                     }
