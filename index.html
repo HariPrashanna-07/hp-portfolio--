@@ -4,48 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hari Prashanna V - Portfolio</title>
-    <!-- Chosen Palette: Oceanic Teal & Coral -->
-    <!-- Application Structure Plan: A single-page, vertical-scrolling application. The structure is designed for a narrative user flow, starting with a strong introduction, followed by skills, tangible proof of skills (achievements/LeetCode stats), projects, and formal credentials (certifications). This structure guides a recruiter or visitor through a logical story of competence. Key interactions include a tabbed skill section for clarity, an interactive chart for achievements to make data digestible, and hover effects on project cards for engagement. This is more effective than a simple text document as it provides visual hierarchy and interactive proof points. -->
-    <!-- Visualization & Content Choices: LeetCode stats are visualized using a Chart.js bar chart to provide an immediate, easy-to-compare view of problem-solving depth (Goal: Compare). Skills are organized into interactive tabs (Goal: Organize) to prevent overwhelming the user. Projects are presented in a card layout (Goal: Inform) for scannability. All choices prioritize clarity and user engagement without using SVG or Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts: Poppins for headings (Playful), Inter for body (Readable) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f7f8;
-            color: #0a2540;
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
         }
+        
+        h1, h2, h3, h4, .nav-logo {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- Animated Gradient Text --- */
         .gradient-text {
-            background: linear-gradient(to right, #00a99d, #ff6b6b);
+            background: linear-gradient(to right, #2dd4bf, #818cf8, #fb7185, #2dd4bf);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
         }
+        @keyframes shine {
+            to { background-position: 300% center; }
+        }
+
+        /* --- Floating Animation --- */
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- Background Blobs --- */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: blob-bounce 10s infinite alternate;
+        }
+        @keyframes blob-bounce {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, -20px) scale(1.1); }
+        }
+
+        /* --- Chart Container --- */
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 600px;
+            margin: 0 auto;
             height: 300px;
-            max-height: 350px;
         }
-        @media (min-width: 768px) { .chart-container { height: 350px; } }
+
+        /* --- Skill Tabs --- */
+        .skill-tab {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            color: #64748b;
+        }
         .skill-tab.active-tab {
-            color: #00a99d;
-            border-color: #00a99d;
-            border-bottom-width: 2px;
+            color: #0d9488;
+            border-color: #0d9488;
+            background-color: rgba(13, 148, 136, 0.05);
+            border-radius: 8px 8px 0 0;
         }
+        .skill-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+        }
+
+        /* --- 3D Project Cards --- */
         .project-card { perspective: 1000px; }
         .project-card-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.6s;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
             transform-style: preserve-3d;
         }
         .project-card:hover .project-card-inner { transform: rotateY(180deg); }
@@ -55,258 +103,428 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            border-radius: 0.5rem;
+            border-radius: 1rem;
         }
         .project-card-back { transform: rotateY(180deg); }
+
+        /* --- Scroll Animation --- */
         .scroll-animation {
             opacity: 0;
-            transition: opacity 1s, transform 1s;
-            transform: translateY(30px);
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .scroll-animation.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- Typing Cursor --- */
         .typing-cursor {
             display: inline-block;
-            width: 8px;
-            height: 1.5rem;
-            background-color: #0a2540;
+            width: 3px;
+            height: 1.2em;
+            background-color: #0d9488;
+            margin-left: 4px;
+            vertical-align: middle;
             animation: blink 1s infinite;
         }
         @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(#2dd4bf, #818cf8); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0f766e; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
 
-    <header id="header" class="fixed w-full top-0 z-50 transition-shadow duration-300">
+    <!-- Background Decorative Blobs -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="blob bg-teal-200 w-96 h-96 rounded-full top-0 left-0 mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="blob bg-purple-200 w-96 h-96 rounded-full top-0 right-0 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="blob bg-rose-200 w-96 h-96 rounded-full bottom-0 left-20 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 backdrop-blur-sm bg-white/70 border-b border-transparent">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold gradient-text">HP</a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="text-gray-600 hover:text-teal-500 transition duration-300">About</a>
-                <a href="#skills" class="text-gray-600 hover:text-teal-500 transition duration-300">Skills</a>
-                <a href="#projects" class="text-gray-600 hover:text-teal-500 transition duration-300">Projects</a>
-                <a href="#achievements" class="text-gray-600 hover:text-teal-500 transition duration-300">Achievements</a>
-                <a href="#contact" class="text-gray-600 hover:text-teal-500 transition duration-300">Contact</a>
+            <a href="#" class="nav-logo text-3xl font-extrabold gradient-text tracking-tight">HP.</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-1 items-center bg-white/50 px-4 py-2 rounded-full border border-white/50 shadow-sm">
+                <a href="#about" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">About</a>
+                <a href="#skills" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">Skills</a>
+                <a href="#projects" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">Projects</a>
+                <a href="#achievements" class="px-4 py-2 text-gray-600 hover:text-teal-600 font-medium rounded-full hover:bg-teal-50 transition duration-300">Stats</a>
+                <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-teal-400 to-blue-500 text-white font-bold rounded-full shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-105 transition duration-300 transform">Hire Me</a>
             </div>
         </nav>
     </header>
 
-    <main class="container mx-auto px-6 pt-24">
+    <main class="relative z-10 pt-24">
 
-        <section id="intro" class="text-center py-20 flex flex-col md:flex-row items-center justify-center gap-12">
-            <div class="md:w-1/3 flex justify-center">
-                <img src="image.jpg" alt="Hari Prashanna" class="rounded-full shadow-2xl border-4 border-white">
-            </div>
-            <div class="md:w-2/3 md:text-left">
-                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-4">Hari Prashanna V</h1>
-                <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mb-8">
-                    <span id="typing-text"></span><span class="typing-cursor"></span>
-                </p>
-                <div class="flex justify-center md:justify-start space-x-6">
-                    <a href="https://www.linkedin.com/in/hari-prashanna-v-725790333" target="_blank" class="text-gray-500 hover:text-teal-500 transition">LinkedIn</a>
-                    <a href="https://leetcode.com/u/HariPrashannaV/" target="_blank" class="text-gray-500 hover:text-teal-500 transition">LeetCode</a>
+        <!-- Hero Section -->
+        <section id="intro" class="min-h-[80vh] flex flex-col justify-center items-center py-20 px-6">
+            <div class="container mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+                <!-- Text Content -->
+                <div class="md:w-1/2 text-center md:text-left z-10">
+                    <div class="inline-block px-4 py-2 mb-4 bg-teal-100 text-teal-700 rounded-full font-bold text-sm shadow-sm scroll-animation">
+                        👋 Welcome to my creative space
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-800 mb-6 leading-tight scroll-animation">
+                        Hi, I'm <br>
+                        <span class="gradient-text">Hari Prashanna</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8 h-20 md:h-auto scroll-animation">
+                        I build <span id="typing-text" class="font-semibold text-gray-800"></span><span class="typing-cursor"></span>
+                    </p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 scroll-animation">
+                        <a href="#projects" class="px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition duration-300 flex items-center gap-2">
+                            <i class="fas fa-project-diagram"></i> View Projects
+                        </a>
+                        <div class="flex gap-4 items-center px-6">
+                            <a href="https://www.linkedin.com/in/hari-prashanna-v-725790333" target="_blank" class="text-gray-400 hover:text-blue-600 transition text-3xl transform hover:scale-125"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://leetcode.com/u/HariPrashannaV/" target="_blank" class="text-gray-400 hover:text-yellow-500 transition text-3xl transform hover:scale-125"><i class="fas fa-code"></i></a>
+                            <a href="mailto:harishvejayraj@gmail.com" class="text-gray-400 hover:text-red-500 transition text-3xl transform hover:scale-125"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image -->
+                <div class="md:w-1/2 flex justify-center z-10 scroll-animation">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96 float-anim">
+                        <!-- Decorative shapes behind image -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-teal-400 to-purple-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+                        <div class="absolute inset-0 bg-white rounded-full m-2 z-0"></div>
+                        <img src="image.jpg" alt="Hari Prashanna" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-white shadow-2xl hover:scale-105 transition duration-500">
+                        
+                        <!-- Floating Badges -->
+                        <div class="absolute top-10 -right-4 bg-white p-3 rounded-2xl shadow-xl animate-bounce" style="animation-delay: 1s;">
+                            <i class="fas fa-bolt text-yellow-400 text-2xl"></i>
+                        </div>
+                        <div class="absolute bottom-10 -left-4 bg-white p-3 rounded-2xl shadow-xl animate-bounce" style="animation-delay: 2s;">
+                            <i class="fas fa-code text-teal-500 text-2xl"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="py-20 scroll-animation">
-             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">About Me</h2>
-             <p class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed text-center">
-                I'm an Electrical and Electronics Engineering student with a deep-seated passion for software development and artificial intelligence. While my academic background is in EEE, my true interest lies in the world of code, particularly where it intersects with hardware to create smart, efficient systems. I am skilled in building full-stack applications, developing IoT solutions from the ground up, and integrating machine learning models to solve tangible problems. My journey is fueled by a love for creative problem-solving and a drive to build. I am now looking to leverage my experience from my internship at RedMind Technologies and my personal projects to contribute to a forward-thinking software development team.
-             </p>
+        <!-- About Section -->
+        <section id="about" class="py-24 container mx-auto px-6 scroll-animation">
+            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl border border-white/50 relative overflow-hidden">
+                <!-- Decoration -->
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-32 h-32 bg-yellow-100 rounded-full blur-2xl"></div>
+                
+                <h2 class="text-4xl font-bold text-center mb-8"><span class="border-b-4 border-teal-400">About Me</span></h2>
+                <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed text-center space-y-6">
+                    <p>
+                        🎓 I'm an <strong class="text-teal-600">Electrical and Electronics Engineering</strong> student with a rebel heart for code. While my degree says "Hardware," my passion screams <strong class="text-purple-600">"Software & AI"</strong>.
+                    </p>
+                    <p>
+                        🚀 I thrive at the intersection where <span class="bg-teal-100 px-2 py-1 rounded text-teal-800 font-semibold">Silicon meets Syntax</span>. From building full-stack web apps to programming ESP32 microcontrollers for IoT, I love creating systems that interact with the real world.
+                    </p>
+                    <p>
+                        💡 Currently leveraging my experience from <strong class="text-gray-900">RedMind Technologies</strong> to solve complex problems with clean code and creative engineering.
+                    </p>
+                </div>
+            </div>
         </section>
 
-        <section id="skills" class="py-20 scroll-animation">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Technical Skills</h2>
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 container mx-auto px-6 scroll-animation">
+            <h2 class="text-4xl font-bold text-center mb-12">My <span class="text-purple-600">Superpowers</span></h2>
             <div class="max-w-5xl mx-auto">
-                <div class="mb-8 flex justify-center border-b border-gray-200">
-                    <button class="skill-tab active-tab px-6 py-2 font-semibold" data-target="programming">Programming</button>
-                    <button class="skill-tab px-6 py-2 font-semibold text-gray-500" data-target="iot">IoT & Embedded</button>
-                    <button class="skill-tab px-6 py-2 font-semibold text-gray-500" data-target="db">Databases & APIs</button>
+                <!-- Custom Tabs -->
+                <div class="flex justify-center mb-10 space-x-2 md:space-x-8">
+                    <button class="skill-tab active-tab px-6 py-3 font-bold text-lg flex items-center gap-2" data-target="programming">
+                        <i class="fas fa-laptop-code"></i> Code
+                    </button>
+                    <button class="skill-tab px-6 py-3 font-bold text-lg flex items-center gap-2" data-target="iot">
+                        <i class="fas fa-wifi"></i> IoT
+                    </button>
+                    <button class="skill-tab px-6 py-3 font-bold text-lg flex items-center gap-2" data-target="db">
+                        <i class="fas fa-database"></i> Data
+                    </button>
                 </div>
-                <div id="programming" class="skill-content grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center"></div>
-                <div id="iot" class="skill-content hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center"></div>
-                <div id="db" class="skill-content hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center"></div>
+
+                <!-- Skill Grids -->
+                <div id="programming" class="skill-content grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+                <div id="iot" class="skill-content hidden grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+                <div id="db" class="skill-content hidden grid grid-cols-2 md:grid-cols-4 gap-6"></div>
             </div>
         </section>
 
-        <section id="achievements" class="py-20 bg-white rounded-xl shadow-lg scroll-animation">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">LeetCode Achievements</h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 items-center">
-                <div class="md:col-span-2">
-                    <p class="text-center text-gray-600 mb-4">Distribution of 974 problems solved.</p>
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 bg-gradient-to-b from-transparent to-white/50 scroll-animation">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16">Featured <span class="text-rose-500">Projects</span></h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+                    
+                    <!-- TrueBallot Card (Blue Theme) -->
+                    <div class="project-card h-96 w-full cursor-pointer group">
+                        <div class="project-card-inner shadow-2xl shadow-blue-200 rounded-2xl">
+                            <!-- Front -->
+                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-blue-50">
+                                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600 text-3xl group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-vote-yea"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-3 text-gray-800">TrueBallot</h3>
+                                <p class="text-gray-500">Secure E-Voting Platform</p>
+                                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">Spring Boot</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">React</span>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="project-card-back bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-8 flex flex-col justify-center items-center text-center">
+                                <h3 class="text-xl font-bold mb-4">Election Integrity</h3>
+                                <p class="mb-6 opacity-90">A robust full-stack system using JWT for security, ensuring every vote is counted accurately and transparently.</p>
+                                <a href="TrueBallot.html" target="_blank" class="bg-white text-blue-700 font-bold py-3 px-6 rounded-full hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
+                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PlantCare 360 Card (Teal Theme) -->
+                    <div class="project-card h-96 w-full cursor-pointer group">
+                        <div class="project-card-inner shadow-2xl shadow-teal-200 rounded-2xl">
+                            <!-- Front -->
+                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-teal-50">
+                                <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mb-6 text-teal-600 text-3xl group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-3 text-gray-800">PlantCare 360</h3>
+                                <p class="text-gray-500">Autonomous Irrigation</p>
+                                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">ESP32</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">IoT</span>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="project-card-back bg-gradient-to-br from-teal-500 to-emerald-600 text-white p-8 flex flex-col justify-center items-center text-center">
+                                <h3 class="text-xl font-bold mb-4">Smart Gardening</h3>
+                                <p class="mb-6 opacity-90">Local-first smart plant care system with real-time dashboards and automated watering logic.</p>
+                                <a href="plantcare360.html" target="_blank" class="bg-white text-teal-700 font-bold py-3 px-6 rounded-full hover:bg-teal-50 hover:scale-105 transition-all shadow-lg">
+                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ambulance Detection (Rose Theme) -->
+                    <div class="project-card h-96 w-full cursor-pointer group">
+                        <div class="project-card-inner shadow-2xl shadow-rose-200 rounded-2xl">
+                            <!-- Front -->
+                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-rose-50">
+                                <div class="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-6 text-rose-600 text-3xl group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-ambulance"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-3 text-gray-800">Smart Traffic AI</h3>
+                                <p class="text-gray-500">Ambulance Detection System</p>
+                                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">YOLOv8</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">Python</span>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="project-card-back bg-gradient-to-br from-rose-500 to-pink-600 text-white p-8 flex flex-col justify-center items-center text-center">
+                                <h3 class="text-xl font-bold mb-4">Saving Lives</h3>
+                                <p class="mb-6 opacity-90">AI-powered traffic signal control that clears lanes for emergency vehicles using computer vision.</p>
+                                <a href="traffic.html" target="_blank" class="bg-white text-rose-700 font-bold py-3 px-6 rounded-full hover:bg-rose-50 hover:scale-105 transition-all shadow-lg">
+                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spotify Project (Green/Dark Theme) -->
+                    <div class="project-card h-96 w-full cursor-pointer group lg:col-start-2">
+                         <div class="project-card-inner shadow-2xl shadow-gray-300 rounded-2xl">
+                            <!-- Front -->
+                            <div class="project-card-front bg-white p-8 flex flex-col items-center justify-center text-center border-2 border-gray-50">
+                                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 text-green-600 text-3xl group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-spotify"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-3 text-gray-800">Playlist Downloader</h3>
+                                <p class="text-gray-500">Spotify GUI Tool</p>
+                                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">Tkinter</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-xs rounded-full">API</span>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="project-card-back bg-gradient-to-br from-gray-800 to-gray-900 text-white p-8 flex flex-col justify-center items-center text-center">
+                                <h3 class="text-xl font-bold mb-4">Offline Music</h3>
+                                <p class="mb-6 opacity-90">A desktop GUI that connects to Spotify API to download playlists for offline use.</p>
+                                <a href="spotify.html" target="_blank" class="bg-white text-gray-900 font-bold py-3 px-6 rounded-full hover:bg-gray-200 hover:scale-105 transition-all shadow-lg">
+                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-24 container mx-auto px-6 scroll-animation">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2 w-full">
+                    <h2 class="text-4xl font-bold mb-6 text-gray-800">LeetCode <span class="text-yellow-500">Stats</span></h2>
+                    <p class="text-gray-600 mb-8">Consistency is key. I've solved nearly 1000 problems, maintaining a top-tier global ranking.</p>
+                    <div class="flex gap-8 mb-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-gray-800">1814</p>
+                            <p class="text-sm text-gray-500 uppercase tracking-wide">Rating</p>
+                        </div>
+                        <div class="text-center border-l border-gray-200 pl-8">
+                            <p class="text-4xl font-extrabold text-teal-600">Top 7%</p>
+                            <p class="text-sm text-gray-500 uppercase tracking-wide">Global Rank</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
                     <div class="chart-container">
                         <canvas id="leetcodeChart"></canvas>
                     </div>
                 </div>
-                <div class="space-y-8 text-center md:text-left">
-                    <div>
-                        <p class="text-5xl font-bold gradient-text">1814</p>
-                        <p class="text-gray-500">Contest Rating</p>
-                    </div>
-                    <div>
-                        <p class="text-5xl font-bold gradient-text">Top 7.04%</p>
-                        <p class="text-gray-500">Global Ranking</p>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <section id="projects" class="py-20 scroll-animation">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="project-card h-80">
-                    <div class="project-card-inner">
-                        <div class="project-card-front bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">PlantCare 360</h3>
-                            <p class="text-gray-600">An autonomous, local-first smart irrigation system using an ESP32 to automate plant care based on real-time sensor data.</p>
-                        </div>
-                        <div class="project-card-back bg-teal-500 text-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-                            <p class="mb-4">A fully local, smart plant monitoring and maintenance system.</p>
-                            <p class="text-sm"><strong>Tech:</strong> ESP32, Local Dashboard, Chart.js</p>
-                            <a href="plantcare360.html" target="_blank" class="mt-4 bg-white text-teal-600 py-2 px-4 rounded-lg">View Project Page</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card h-80">
-                    <div class="project-card-inner">
-                        <div class="project-card-front bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Ambulance Detection Smart Traffic Signal</h3>
-                            <p class="text-gray-600">An AI-powered system using a camera and YOLOv8 to detect ambulances and clear emergency routes.</p>
-                        </div>
-                        <div class="project-card-back bg-red-400 text-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-                            <p class="mb-4">Integrates an LLM for reporting and predictive traffic control.</p>
-                            <p class="text-sm"><strong>Tech:</strong> Python, OpenCV, YOLOv8, LLM</p>
-                            <a href="traffic.html" target="_blank" class="mt-4 bg-white text-teal-600 py-2 px-4 rounded-lg">View Project Page</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card h-80">
-    <div class="project-card-inner">
-        <!-- Front Side -->
-        <div class="project-card-front bg-white rounded-lg shadow-lg p-6 flex flex-col">
-            <h3 class="text-xl font-bold mb-2 text-gray-800">TrueBallot: E-Voting Platform</h3>
-            <p class="text-gray-600">A secure and transparent electronic voting system designed to ensure election integrity using a robust full-stack architecture.</p>
-        </div>
-
-        <!-- Back Side -->
-        <div class="project-card-back bg-blue-600 text-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-            <p class="mb-4">Features JWT authentication, real-time result visualization, and comprehensive admin management.</p>
-            <p class="text-sm"><strong>Tech:</strong> Spring Boot, React, MySQL, JWT</p>
-            <a href="TrueBallot.html" target="_blank" class="mt-4 bg-white text-blue-600 py-2 px-4 rounded-lg font-bold hover:bg-gray-100 transition-colors">View Project Page</a>
-        </div>
-    </div>
-</div>
-                <div class="project-card h-80">
-                    <div class="project-card-inner">
-                        <div class="project-card-front bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Spotify Playlist Downloader GUI</h3>
-                            <p class="text-gray-600">A Python Tkinter desktop app that allows users to download entire Spotify playlists for offline listening.</p>
-                        </div>
-                        <div class="project-card-back bg-gray-700 text-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-                            <p class="mb-4">Fetches data via Spotify API and saves audio from YouTube.</p>
-                            <p class="text-sm"><strong>Tech:</strong> Python, Tkinter, Spotipy API</p>
-                            <a href="spotify.html" target="_blank" class="mt-4 bg-white text-teal-600 py-2 px-4 rounded-lg">View Project Page</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Certifications -->
+        <section class="py-20 text-center scroll-animation">
+            <h2 class="text-3xl font-bold mb-8">Verified <span class="text-teal-600">Credentials</span></h2>
+            <a href="https://certficate.vercel.app/" target="_blank" class="inline-flex items-center gap-3 bg-white border-2 border-teal-500 text-teal-600 font-bold py-4 px-10 rounded-full hover:bg-teal-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-teal-500/30 transform hover:-translate-y-1">
+                <i class="fas fa-certificate text-xl"></i> View All Certificates
+            </a>
         </section>
 
-        <section id="certifications" class="py-20 scroll-animation">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Certifications</h2>
-            <div class="max-w-4xl mx-auto text-center">
-                <p class="text-lg text-gray-600 mb-8">I am committed to continuous learning. You can view my verified certificates here.</p>
-                <a href="https://certficate.vercel.app/" target="_blank" class="bg-teal-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-600 transition-colors duration-300 inline-block">
-                    View All Certificates
-                </a>
-            </div>
-        </section>
-        
-        <section id="contact" class="py-20 scroll-animation">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Get In Touch</h2>
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex items-center gap-4">
-                        <i class="fas fa-map-marker-alt text-2xl text-teal-500"></i>
-                        <div>
-                            <h3 class="font-semibold">Address</h3>
-                            <p class="text-gray-600">25/A, New Street, Ammapet, Salem-636003</p>
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900 text-white relative overflow-hidden">
+            <!-- Footer Decoration -->
+             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 via-purple-500 to-rose-500"></div>
+
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <h2 class="text-4xl font-bold mb-12">Let's Build Something <span class="text-teal-400">Amazing</span></h2>
+                
+                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+                    <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition duration-300 group cursor-pointer">
+                        <div class="w-14 h-14 bg-gray-700 group-hover:bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                            <i class="fas fa-map-marker-alt text-2xl"></i>
                         </div>
+                        <p class="text-gray-300">Salem, India</p>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="fas fa-phone text-2xl text-teal-500"></i>
-                        <div>
-                            <h3 class="font-semibold">Phone</h3>
-                            <p class="text-gray-600">+91 96555 60484</p>
+                    <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition duration-300 group cursor-pointer">
+                        <div class="w-14 h-14 bg-gray-700 group-hover:bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                            <i class="fas fa-phone text-2xl"></i>
                         </div>
+                        <p class="text-gray-300">+91 96555 60484</p>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="fas fa-envelope text-2xl text-teal-500"></i>
-                        <div>
-                            <h3 class="font-semibold">Email</h3>
-                            <a href="mailto:harishvejayraj@gmail.com" class="text-gray-600 hover:text-teal-600">harishvejayraj@gmail.com</a>
+                    <a href="mailto:harishvejayraj@gmail.com" class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition duration-300 group cursor-pointer">
+                        <div class="w-14 h-14 bg-gray-700 group-hover:bg-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                            <i class="fas fa-envelope text-2xl"></i>
                         </div>
-                    </div>
-                     <div class="flex items-center gap-4">
-                        <i class="fab fa-linkedin text-2xl text-teal-500"></i>
-                        <div>
-                            <h3 class="font-semibold">LinkedIn</h3>
-                            <a href="https://www.linkedin.com/in/hari-prashanna-v-725790333/" target="_blank" class="text-gray-600 hover:text-teal-600">hari-prashanna-v</a>
-                        </div>
-                    </div>
+                        <p class="text-gray-300">harishvejayraj@gmail.com</p>
+                    </a>
                 </div>
+
+                <p class="text-gray-500 text-sm">&copy; 2025 Hari Prashanna V. Crafted with <i class="fas fa-heart text-rose-500 animate-pulse"></i> and Code.</p>
             </div>
         </section>
 
     </main>
 
-    <footer class="text-center py-8 border-t border-gray-200 mt-20">
-        <p class="text-gray-500">&copy; 2025 Hari Prashanna V. Let's innovate boldly.</p>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Typing animation
+            // Typing Animation
             const typingText = document.getElementById('typing-text');
-            const text = "An inventive and driven engineering student passionate about fusing software, hardware, and real-world impact.";
-            let index = 0;
-            function type() {
-                if (index < text.length) {
-                    typingText.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(type, 50);
+            const phrases = ["Secure Systems.", "Smart IoT.", "AI Solutions.", "the Future."];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeEffect() {
+                const currentPhrase = phrases[phraseIndex];
+                
+                if (isDeleting) {
+                    typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 2000); // Pause at end
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typeEffect, 500);
+                } else {
+                    setTimeout(typeEffect, isDeleting ? 50 : 100);
                 }
             }
-            type();
+            typeEffect();
 
-            // Header scroll effect
+            // Header Scroll Effect
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('bg-white/80', 'shadow-md', 'backdrop-blur-sm');
+                if (window.scrollY > 20) {
+                    header.classList.add('shadow-md', 'py-2');
+                    header.classList.remove('py-4', 'border-transparent');
+                    header.classList.add('border-gray-100');
                 } else {
-                    header.classList.remove('bg-white/80', 'shadow-md', 'backdrop-blur-sm');
+                    header.classList.remove('shadow-md', 'py-2', 'border-gray-100');
+                    header.classList.add('py-4', 'border-transparent');
                 }
             });
 
-            // Skills Data with Icons
+            // Skills Data with Colors
+            // Added specific colors for icons to make it playful
             const skills = {
-                programming: { 'Python': 'fab fa-python', 'JavaScript': 'fab fa-js-square', 'React': 'fab fa-react', 'HTML': 'fab fa-html5', 'CSS': 'fab fa-css3-alt', 'SQL': 'fas fa-database', 'Flask': 'fas fa-server', 'FastAPI': 'fas fa-rocket' },
-                iot: { 'ESP32': 'fas fa-microchip', 'NRF24L01': 'fas fa-broadcast-tower', 'Sensor Integration': 'fas fa-tachometer-alt', 'Hardware-Software': 'fas fa-cogs' },
-                db: { 'Firebase': 'fas fa-cloud', 'MySQL': 'fas fa-database', 'OpenAI API': 'fas fa-brain', 'APIs': 'fas fa-plug' }
+                programming: { 
+                    'Python': {icon: 'fab fa-python', color: 'text-yellow-500'}, 
+                    'JavaScript': {icon: 'fab fa-js-square', color: 'text-yellow-400'}, 
+                    'React': {icon: 'fab fa-react', color: 'text-blue-400'}, 
+                    'HTML': {icon: 'fab fa-html5', color: 'text-orange-500'}, 
+                    'CSS': {icon: 'fab fa-css3-alt', color: 'text-blue-500'}, 
+                    'SQL': {icon: 'fas fa-database', color: 'text-gray-600'}, 
+                    'Flask': {icon: 'fas fa-server', color: 'text-gray-800'}, 
+                    'FastAPI': {icon: 'fas fa-rocket', color: 'text-teal-500'} 
+                },
+                iot: { 
+                    'ESP32': {icon: 'fas fa-microchip', color: 'text-red-500'}, 
+                    'NRF24L01': {icon: 'fas fa-broadcast-tower', color: 'text-blue-600'}, 
+                    'Sensors': {icon: 'fas fa-temperature-high', color: 'text-orange-500'}, 
+                    'Embedded C': {icon: 'fas fa-code', color: 'text-purple-600'} 
+                },
+                db: { 
+                    'Firebase': {icon: 'fas fa-fire', color: 'text-yellow-500'}, 
+                    'MySQL': {icon: 'fas fa-table', color: 'text-blue-700'}, 
+                    'OpenAI': {icon: 'fas fa-robot', color: 'text-teal-600'}, 
+                    'REST APIs': {icon: 'fas fa-exchange-alt', color: 'text-pink-500'} 
+                }
             };
 
             function populateSkills() {
                 for (const category in skills) {
                     const container = document.getElementById(category);
                     if(container) {
-                        for(const skillName in skills[category]) {
-                            const iconClass = skills[category][skillName];
+                        for(const [name, data] of Object.entries(skills[category])) {
                             const skillEl = document.createElement('div');
-                            skillEl.className = 'p-4 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center gap-2 transform hover:scale-110 transition-transform duration-300';
-                            skillEl.innerHTML = `<i class="${iconClass} text-3xl text-teal-500"></i><span class="font-semibold">${skillName}</span>`;
+                            skillEl.className = 'skill-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-3 transition-all duration-300';
+                            skillEl.innerHTML = `
+                                <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                                    <i class="${data.icon} text-3xl ${data.color}"></i>
+                                </div>
+                                <span class="font-bold text-gray-700">${name}</span>
+                            `;
                             container.appendChild(skillEl);
                         }
                     }
@@ -314,58 +532,53 @@
             }
             populateSkills();
 
-            // Skills Tab functionality
+            // Tab Logic
             const tabs = document.querySelectorAll('.skill-tab');
             const contents = document.querySelectorAll('.skill-content');
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    tabs.forEach(item => item.classList.remove('active-tab'));
+                    tabs.forEach(t => t.classList.remove('active-tab'));
                     tab.classList.add('active-tab');
-                    contents.forEach(content => content.classList.add('hidden'));
+                    contents.forEach(c => c.classList.add('hidden'));
                     document.getElementById(tab.dataset.target).classList.remove('hidden');
                 });
             });
 
-            // LeetCode Chart
+            // Scroll Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-animation').forEach(el => observer.observe(el));
+
+            // Chart
             const ctx = document.getElementById('leetcodeChart');
             if(ctx) {
                 new Chart(ctx, {
-                    type: 'bar',
+                    type: 'doughnut', // Switched to Doughnut for a cooler look
                     data: {
                         labels: ['Easy', 'Medium', 'Hard'],
                         datasets: [{
-                            label: '# of Problems Solved',
                             data: [650, 299, 25],
-                            backgroundColor: ['rgba(0, 169, 157, 0.6)', 'rgba(255, 107, 107, 0.6)', 'rgba(10, 37, 64, 0.6)'],
-                            borderColor: ['#00a99d', '#ff6b6b', '#0a2540'],
-                            borderWidth: 1
+                            backgroundColor: ['#2dd4bf', '#fb7185', '#1e293b'],
+                            borderWidth: 0,
+                            hoverOffset: 10
                         }]
                     },
                     options: {
-                        indexAxis: 'y',
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: { x: { beginAtZero: true }, y: { grid: { display: false } } }
+                        plugins: {
+                            legend: { position: 'bottom', labels: { font: { family: 'Poppins' } } }
+                        },
+                        cutout: '70%'
                     }
                 });
             }
-            
-            // Scroll animations
-            const scrollElements = document.querySelectorAll('.scroll-animation');
-            const elementInView = (el) => {
-                const elementTop = el.getBoundingClientRect().top;
-                return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - 100;
-            };
-            const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
-                    if (elementInView(el)) {
-                        el.classList.add('visible');
-                    }
-                });
-            };
-            window.addEventListener('scroll', handleScrollAnimation);
-            handleScrollAnimation();
         });
     </script>
 </body>
