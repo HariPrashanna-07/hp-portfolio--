@@ -109,14 +109,21 @@
 
         /* --- Scroll Animation --- */
         .scroll-animation {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .scroll-animation.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    opacity: 0;
+    transform: translateY(60px) scale(0.96);
+    filter: blur(6px);
+    transition:
+        opacity 0.7s ease-out,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.8s ease-out;
+    will-change: transform, opacity, filter;
+}
+
+.scroll-animation.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
 
         /* --- Typing Cursor --- */
         .typing-cursor {
@@ -150,7 +157,7 @@
     <!-- Header -->
     <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 backdrop-blur-sm bg-slate-900/70 border-b border-transparent">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="nav-logo text-3xl font-extrabold gradient-text tracking-tight">HP.</a>
+            <a href="#" class="nav-logo text-3xl font-extrabold gradient-text tracking-tight">HARISH.</a>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-1 items-center bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700 shadow-sm">
@@ -224,10 +231,10 @@
                         I am <strong class="text-teal-400">Hari Prashanna V</strong>, a pre-final year EEE student at Sri Eshwar College of Engineering, passionate about solving complex problems through Machine Learning and Full-Stack development.
                     </p>
                     <p>
-                        With strong expertise in Python, C++, and SQL, I specialize in building intelligent systems using deep learning frameworks like YOLOv8 and TensorFlow. My practical experience includes developing <strong class="text-rose-400">'AutoSignal,'</strong> an AI-driven emergency vehicle detection system, and <strong class="text-blue-400">'TrueBallot,'</strong> a secure online voting platform backed by robust database architecture.
+                        With strong expertise in Python,JavaScript, C++, and SQL, I specialize in building intelligent systems using deep learning frameworks like YOLOv8 and TensorFlow. My practical experience includes developing <strong class="text-rose-400">'AutoSignal,'</strong> an AI-driven emergency vehicle detection system, and <strong class="text-blue-400">'TrueBallot,'</strong> a secure online voting platform backed by robust database architecture.
                     </p>
                     <p>
-                         My problem-solving skills are demonstrated by over 900 LeetCode solutions with a 1750 rating, alongside NPTEL certifications in Data Science. I am eager to contribute my technical proficiency and analytical mindset to your organization.
+                         My problem-solving skills are demonstrated by over 1000 LeetCode solutions with a 1800 rating, alongside NPTEL certifications in Data Science. I am eager to contribute my technical proficiency and analytical mindset to your organization.
                     </p>
                 </div>
             </div>
@@ -377,7 +384,7 @@
             <div class="bg-slate-800/80 rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center border border-slate-700">
                 <div class="md:w-1/2 w-full">
                     <h2 class="text-4xl font-bold mb-6 text-white">LeetCode <span class="text-yellow-400">Stats</span></h2>
-                    <p class="text-slate-300 mb-8">Consistency is key. I've solved nearly 1000 problems, maintaining a top-tier global ranking.</p>
+                    <p class="text-slate-300 mb-8">Consistency is key. I've solved  1000 problems, maintaining a top-tier global ranking.</p>
                     <div class="flex gap-8 mb-8">
                         <div class="text-center">
                             <p class="text-4xl font-extrabold text-white">1814</p>
@@ -563,7 +570,7 @@
                     data: {
                         labels: ['Easy', 'Medium', 'Hard'],
                         datasets: [{
-                            data: [650, 299, 25],
+                            data: [658, 316, 26],
                             backgroundColor: ['#2dd4bf', '#fb7185', '#64748b'], // Updated Hard color to Slate-500
                             borderColor: '#0f172a', // Match bg color
                             borderWidth: 2,
