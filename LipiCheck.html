@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LIPI-CHECK – AI Circuit Analyzer</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Inter',sans-serif;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+h1,h2,h3{
+font-family:'Roboto Slab',serif;
+}
+
+.gradient-bg{
+background:linear-gradient(135deg,#0f172a,#2563eb);
+}
+
+.scroll-animation{
+opacity:0;
+transform:translateY(30px);
+transition:all .8s ease;
+}
+
+.scroll-animation.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- HEADER -->
+
+<header id="header" class="fixed top-0 w-full z-50 transition-all duration-300 bg-slate-900/80 backdrop-blur-sm border-b border-slate-800">
+
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+<a class="text-xl font-bold text-blue-400">
+<i class="fa-solid fa-microchip mr-2"></i>
+LIPI-CHECK
+</a>
+
+<div class="hidden md:flex space-x-6">
+
+<a href="#introduction" class="text-slate-300 hover:text-blue-400">Introduction</a>
+<a href="#features" class="text-slate-300 hover:text-blue-400">Features</a>
+<a href="#architecture" class="text-slate-300 hover:text-blue-400">Architecture</a>
+<a href="#tech" class="text-slate-300 hover:text-blue-400">Tech Stack</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<main class="container mx-auto px-6">
+
+
+<!-- HERO -->
+
+<section class="text-center py-28 gradient-bg text-white rounded-xl mt-24 shadow-2xl shadow-blue-900/40">
+
+<h1 class="text-5xl font-bold">
+LIPI-CHECK
+</h1>
+
+<p class="mt-6 text-xl max-w-2xl mx-auto">
+
+AI-Powered Circuit Debugging Assistant for Electronics Students
+
+</p>
+
+</section>
+
+
+<!-- ABSTRACT -->
+
+<section class="py-20 scroll-animation">
+
+<h2 class="text-3xl font-bold text-center mb-6 text-white">
+
+Abstract
+
+</h2>
+
+<p class="max-w-4xl mx-auto text-center text-slate-300 text-lg">
+
+LIPI-CHECK is an AI-powered platform that helps students debug breadboard circuits using computer vision and AI reasoning.  
+Students upload circuit images and the system analyzes the wiring using Amazon Bedrock vision models.  
+The AI detects components, identifies wiring mistakes, and provides step-by-step explanations to help students understand and fix their circuits quickly.
+
+</p>
+
+</section>
+
+
+<!-- INTRODUCTION -->
+
+<section id="introduction" class="py-20 bg-slate-800/50 rounded-lg shadow-xl border border-slate-700 scroll-animation">
+
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+<div>
+
+<h2 class="text-3xl font-bold mb-6 text-white">
+
+Problem & Solution
+
+</h2>
+
+<p class="text-slate-300 mb-4">
+
+Electronics students often struggle to debug breadboard circuits.  
+Small mistakes such as wrong polarity, missing resistors, or short circuits can take hours to identify in labs.
+
+</p>
+
+<p class="text-slate-300 border-l-4 border-blue-500 pl-4">
+
+<strong>LIPI-CHECK</strong> solves this problem using AI.  
+Students upload a circuit image and the system automatically detects components, identifies wiring errors, and provides explanations.
+
+</p>
+
+</div>
+
+<div class="flex justify-center">
+
+<i class="fa-solid fa-robot text-9xl text-blue-500 opacity-80"></i>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OBJECTIVES -->
+
+<section class="py-20 scroll-animation">
+
+<h2 class="text-3xl font-bold text-center mb-12 text-white">
+
+Project Objectives
+
+</h2>
+
+<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+<div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700 flex gap-4">
+
+<i class="fa-solid fa-bug text-blue-600 text-2xl"></i>
+
+<div>
+
+<h4 class="font-bold text-white">Automatic Circuit Debugging</h4>
+<p class="text-sm text-slate-400">Detect wiring mistakes instantly.</p>
+
+</div>
+
+</div>
+
+<div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700 flex gap-4">
+
+<i class="fa-solid fa-brain text-blue-600 text-2xl"></i>
+
+<div>
+
+<h4 class="font-bold text-white">AI-Powered Analysis</h4>
+<p class="text-sm text-slate-400">Uses Amazon Bedrock vision models.</p>
+
+</div>
+
+</div>
+
+<div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700 flex gap-4">
+
+<i class="fa-solid fa-comments text-blue-600 text-2xl"></i>
+
+<div>
+
+<h4 class="font-bold text-white">Ask AI Questions</h4>
+<p class="text-sm text-slate-400">Students can ask about their circuits.</p>
+
+</div>
+
+</div>
+
+<div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700 flex gap-4">
+
+<i class="fa-solid fa-cloud text-blue-600 text-2xl"></i>
+
+<div>
+
+<h4 class="font-bold text-white">Cloud Based</h4>
+<p class="text-sm text-slate-400">Serverless AWS architecture.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section id="features" class="py-20 bg-slate-800/50 rounded-lg shadow-xl border border-slate-700 scroll-animation">
+
+<h2 class="text-3xl font-bold text-center mb-12 text-white">
+
+Core Features
+
+</h2>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+
+<div class="text-center border border-slate-700 bg-slate-800 p-6 rounded-lg hover:border-blue-500 transition-colors">
+
+<i class="fa-solid fa-camera text-4xl text-blue-600 mb-4"></i>
+
+<h3 class="font-bold text-white">Image Upload</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+Upload breadboard circuit images.
+</p>
+
+</div>
+
+<div class="text-center border border-slate-700 bg-slate-800 p-6 rounded-lg hover:border-blue-500 transition-colors">
+
+<i class="fa-solid fa-microchip text-4xl text-blue-600 mb-4"></i>
+
+<h3 class="font-bold text-white">Component Detection</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+Detect LEDs, resistors and sensors.
+</p>
+
+</div>
+
+<div class="text-center border border-slate-700 bg-slate-800 p-6 rounded-lg hover:border-blue-500 transition-colors">
+
+<i class="fa-solid fa-bolt text-4xl text-blue-600 mb-4"></i>
+
+<h3 class="font-bold text-white">Error Detection</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+Identify wiring mistakes instantly.
+</p>
+
+</div>
+
+<div class="text-center border border-slate-700 bg-slate-800 p-6 rounded-lg hover:border-blue-500 transition-colors">
+
+<i class="fa-solid fa-comment-dots text-4xl text-blue-600 mb-4"></i>
+
+<h3 class="font-bold text-white">AI Assistant</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+Ask questions about circuits.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ARCHITECTURE -->
+
+<section id="architecture" class="py-20 scroll-animation">
+
+<h2 class="text-3xl font-bold text-center mb-12 text-white">
+
+System Architecture
+
+</h2>
+
+<div class="max-w-4xl mx-auto bg-slate-950 text-green-400 p-8 rounded-lg font-mono text-sm overflow-x-auto shadow-2xl border border-slate-800">
+
+<pre>
+
++----------------------+
+|    Student/User      |
++----------+-----------+
+           |
+           v
++----------------------+
+|  React Web App       |
+|  (Hosted on Vercel)  |
++----------+-----------+
+           |
+           v
++----------------------+
+|   API Gateway        |
++----------+-----------+
+           |
+           v
++----------------------+
+|   AWS Lambda         |
+|   Backend Logic      |
++----------+-----------+
+           |
+           v
++----------------------+
+|  Amazon Bedrock      |
+|  Vision AI Model     |
++----------+-----------+
+           |
+           v
++----------------------+
+| AI Circuit Analysis  |
+| Components + Errors  |
++----------------------+
+
+</pre>
+
+</div>
+
+</section>
+
+
+<!-- TECH STACK -->
+
+<section id="tech" class="py-20 bg-slate-800/50 rounded-lg shadow-xl border border-slate-700 scroll-animation">
+
+<h2 class="text-3xl font-bold text-center mb-12 text-white">
+
+Technology Stack
+
+</h2>
+
+<div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+
+<div>
+
+<h3 class="text-xl font-bold mb-4 text-white">Frontend</h3>
+
+<ul class="space-y-3 text-slate-300">
+
+<li>React.js</li>
+<li>Tailwind CSS</li>
+<li>Vercel Deployment</li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h3 class="text-xl font-bold mb-4 text-white">Backend & Cloud</h3>
+
+<ul class="space-y-3 text-slate-300">
+
+<li>AWS Lambda</li>
+<li>API Gateway</li>
+<li>Amazon Bedrock</li>
+<li>MongoDB Atlas</li>
+<li>AWS S3</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ADVANTAGES -->
+
+<section class="py-20 scroll-animation">
+
+<div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
+
+<div>
+
+<h3 class="text-2xl font-bold text-green-400 mb-4">
+
+Advantages
+
+</h3>
+
+<ul class="space-y-3 text-slate-300">
+
+<li>✔ Instant circuit debugging</li>
+<li>✔ AI explanations for beginners</li>
+<li>✔ Scalable serverless architecture</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-bold text-red-400 mb-4">
+
+Limitations
+
+</h3>
+
+<ul class="space-y-3 text-slate-300">
+
+<li>Requires internet connection</li>
+<li>Image quality affects accuracy</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer class="text-center py-10 bg-slate-950 text-slate-400 mt-10 border-t border-slate-800">
+
+<p>
+
+© 2026 Hari Prashanna
+
+</p>
+
+<p class="text-sm mt-2">
+
+AI for Bharat Project
+
+</p>
+
+</footer>
+
+
+
+<script>
+
+document.addEventListener("scroll",()=>{
+
+document.querySelectorAll(".scroll-animation").forEach(el=>{
+if(el.getBoundingClientRect().top<window.innerHeight-100){
+el.classList.add("visible")
+}
+})
+
+})
+
+</script>
+
+</body>
+</html>
