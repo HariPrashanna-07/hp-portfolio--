@@ -49,17 +49,12 @@
             100% { transform: translateY(0px); }
         }
 
-        /* --- Background Blobs (Adjusted for Dark Mode) --- */
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.25;
-            animation: blob-bounce 10s infinite alternate;
+        /* --- 3D Tubes Background --- */
+        #tubes-background {
+            cursor: pointer;
         }
-        @keyframes blob-bounce {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(20px, -20px) scale(1.1); }
+        #tubes-canvas {
+            background: transparent;
         }
 
         /* --- Chart Container --- */
@@ -146,12 +141,9 @@
 </head>
 <body class="antialiased selection:bg-teal-500 selection:text-white">
 
-    <!-- Background Decorative Blobs -->
-    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <!-- Changed mix-blend to screen for dark mode glowing effect -->
-        <div class="blob bg-teal-500 w-96 h-96 rounded-full top-0 left-0 mix-blend-screen filter blur-3xl opacity-20 animate-blob"></div>
-        <div class="blob bg-purple-500 w-96 h-96 rounded-full top-0 right-0 mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="blob bg-rose-500 w-96 h-96 rounded-full bottom-0 left-20 mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+    <!-- 3D Tubes Interactive Background -->
+    <div id="tubes-background" class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-auto z-0">
+        <canvas id="tubes-canvas" class="absolute inset-0 w-full h-full block" style="touch-action: none;"></canvas>
     </div>
 
     <!-- Header -->
@@ -228,13 +220,13 @@
                 <h2 class="text-4xl font-bold text-center mb-8 text-white"><span class="border-b-4 border-teal-500">About Me</span></h2>
                 <div class="max-w-4xl mx-auto text-lg text-slate-300 leading-relaxed text-center space-y-6">
                     <p>
-                        I am <strong class="text-teal-400">Hari Prashanna V</strong>, a pre-final year EEE student at Sri Eshwar College of Engineering, passionate about solving complex problems through Machine Learning and Full-Stack development.
+                        I am <strong class="text-teal-400">Hari Prashanna V</strong>, a second year EEE student at Sri Eshwar College of Engineering, passionate about solving complex problems through Machine Learning and Full-Stack development.
                     </p>
                     <p>
-                        With strong expertise in Python,JavaScript, C++, and SQL, I specialize in building intelligent systems using deep learning frameworks like YOLOv8 and TensorFlow. My practical experience includes developing <strong class="text-rose-400">'AutoSignal,'</strong> an AI-driven emergency vehicle detection system, and <strong class="text-blue-400">'TrueBallot,'</strong> a secure online voting platform backed by robust database architecture.
+                        With strong expertise in Python,JavaScript, C, and SQL, I specialize in building intelligent systems using deep learning frameworks like YOLOv8 and TensorFlow. My practical experience includes developing <strong class="text-rose-400">'AutoSignal,'</strong> an AI-driven emergency vehicle detection system, and <strong class="text-blue-400">'TrueBallot,'</strong> a secure online voting platform backed by robust database architecture.
                     </p>
                     <p>
-                         My problem-solving skills are demonstrated by over 1000 LeetCode solutions with a 1800 rating, alongside NPTEL certifications in Data Science. I am eager to contribute my technical proficiency and analytical mindset to your organization.
+                         My problem-solving skills are demonstrated by over 1200 LeetCode solutions with a 1899 max rating, alongside NPTEL certifications in Data Science. I am eager to contribute my technical proficiency and analytical mindset to your organization.
                     </p>
                 </div>
             </div>
@@ -287,10 +279,10 @@
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-blue-700 to-indigo-800 text-white p-8 flex flex-col justify-center items-center text-center">
-                                <h3 class="text-xl font-bold mb-4">Election Integrity</h3>
-                                <p class="mb-6 opacity-90 text-sm">A robust full-stack system using JWT for security, ensuring every vote is counted accurately.</p>
-                                <a href="TrueBallot.html" target="_blank" class="bg-white text-blue-800 font-bold py-3 px-6 rounded-full hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
+                            <div class="project-card-back bg-slate-900 text-white p-8 flex flex-col justify-center items-center text-center border border-slate-700">
+                                <h3 class="text-xl font-bold mb-4 text-blue-400">Election Integrity</h3>
+                                <p class="mb-6 opacity-90 text-sm text-slate-300">A robust full-stack system using JWT for security, ensuring every vote is counted accurately.</p>
+                                <a href="TrueBallot.html" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-500 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -313,10 +305,10 @@
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-teal-600 to-emerald-700 text-white p-8 flex flex-col justify-center items-center text-center">
-                                <h3 class="text-xl font-bold mb-4">Smart Gardening</h3>
-                                <p class="mb-6 opacity-90 text-sm">Local-first smart plant care system with real-time dashboards and automated watering logic.</p>
-                                <a href="plantcare360.html" target="_blank" class="bg-white text-teal-800 font-bold py-3 px-6 rounded-full hover:bg-teal-50 hover:scale-105 transition-all shadow-lg">
+                            <div class="project-card-back bg-slate-900 text-white p-8 flex flex-col justify-center items-center text-center border border-slate-700">
+                                <h3 class="text-xl font-bold mb-4 text-teal-400">Smart Gardening</h3>
+                                <p class="mb-6 opacity-90 text-sm text-slate-300">Local-first smart plant care system with real-time dashboards and automated watering logic.</p>
+                                <a href="plantcare360.html" target="_blank" class="bg-teal-600 text-white font-bold py-3 px-6 rounded-full hover:bg-teal-500 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -339,10 +331,10 @@
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-rose-600 to-pink-700 text-white p-8 flex flex-col justify-center items-center text-center">
-                                <h3 class="text-xl font-bold mb-4">Saving Lives</h3>
-                                <p class="mb-6 opacity-90 text-sm">AI-powered traffic signal control that clears lanes for emergency vehicles using computer vision.</p>
-                                <a href="traffic.html" target="_blank" class="bg-white text-rose-800 font-bold py-3 px-6 rounded-full hover:bg-rose-50 hover:scale-105 transition-all shadow-lg">
+                            <div class="project-card-back bg-slate-900 text-white p-8 flex flex-col justify-center items-center text-center border border-slate-700">
+                                <h3 class="text-xl font-bold mb-4 text-rose-400">Saving Lives</h3>
+                                <p class="mb-6 opacity-90 text-sm text-slate-300">AI-powered traffic signal control that clears lanes for emergency vehicles using computer vision.</p>
+                                <a href="traffic.html" target="_blank" class="bg-rose-600 text-white font-bold py-3 px-6 rounded-full hover:bg-rose-500 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -350,7 +342,7 @@
                     </div>
 
                     <!-- Spotify Project (Darker Theme) -->
-                    <div class="project-card h-96 w-full cursor-pointer group lg:col-start-2">
+                    <div class="project-card h-96 w-full cursor-pointer group">
                          <div class="project-card-inner shadow-2xl shadow-slate-900 rounded-2xl">
                             <!-- Front -->
                             <div class="project-card-front bg-slate-800 p-8 flex flex-col items-center justify-center text-center border border-slate-700">
@@ -365,10 +357,36 @@
                                 </div>
                             </div>
                             <!-- Back -->
-                            <div class="project-card-back bg-gradient-to-br from-green-700 to-emerald-800 text-white p-8 flex flex-col justify-center items-center text-center">
-                                <h3 class="text-xl font-bold mb-4">Offline Music</h3>
-                                <p class="mb-6 opacity-90 text-sm">A desktop GUI that connects to Spotify API to download playlists for offline use.</p>
-                                <a href="spotify.html" target="_blank" class="bg-white text-green-900 font-bold py-3 px-6 rounded-full hover:bg-green-50 hover:scale-105 transition-all shadow-lg">
+                            <div class="project-card-back bg-slate-900 text-white p-8 flex flex-col justify-center items-center text-center border border-slate-700">
+                                <h3 class="text-xl font-bold mb-4 text-green-400">Offline Music</h3>
+                                <p class="mb-6 opacity-90 text-sm text-slate-300">A desktop GUI that connects to Spotify API to download playlists for offline use.</p>
+                                <a href="spotify.html" target="_blank" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-500 hover:scale-105 transition-all shadow-lg">
+                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LipiCheck Card (Purple Theme) -->
+                    <div class="project-card h-96 w-full cursor-pointer group">
+                        <div class="project-card-inner shadow-2xl shadow-purple-900/40 rounded-2xl">
+                            <!-- Front -->
+                            <div class="project-card-front bg-slate-800 p-8 flex flex-col items-center justify-center text-center border border-slate-700">
+                                <div class="w-16 h-16 bg-purple-900/30 rounded-2xl flex items-center justify-center mb-6 text-purple-400 text-3xl group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-3 text-slate-100">LIPI-CHECK</h3>
+                                <p class="text-slate-400">AI Circuit Debugger</p>
+                                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">Computer Vision</span>
+                                    <span class="px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">AWS</span>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="project-card-back bg-slate-900 text-white p-8 flex flex-col justify-center items-center text-center border border-slate-700">
+                                <h3 class="text-xl font-bold mb-4 text-purple-400">Smart Debugging</h3>
+                                <p class="mb-6 opacity-90 text-sm text-slate-300">AI-powered circuit debugging assistant that identifies breadboard errors using computer vision and provides real-time fix instructions.</p>
+                                <a href="lipicheck.html" target="_blank" class="bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-500 hover:scale-105 transition-all shadow-lg">
                                     View Project <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -447,7 +465,43 @@
 
     </main>
 
-    <script>
+    <script type="module">
+        // Initialize 3D Tubes Background
+        let tubesApp = null;
+        
+        async function initTubesBackground() {
+            const canvas = document.getElementById('tubes-canvas');
+            if (!canvas) return;
+            
+            try {
+                const module = await import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js');
+                const TubesCursor = module.default;
+                
+                tubesApp = TubesCursor(canvas, {
+                    tubes: {
+                        colors: ["#2dd4bf", "#818cf8", "#fb7185"],
+                        lights: {
+                            intensity: 200,
+                            colors: ["#2dd4bf", "#818cf8", "#fb7185", "#60aed5"]
+                        }
+                    }
+                });
+                
+                // Click to randomize colors
+                canvas.addEventListener('click', () => {
+                    if (!tubesApp) return;
+                    const colors = Array(3).fill(0).map(() => "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0'));
+                    const lightsColors = Array(4).fill(0).map(() => "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0'));
+                    tubesApp.tubes.setColors(colors);
+                    tubesApp.tubes.setLightsColors(lightsColors);
+                });
+            } catch (error) {
+                console.error('Failed to load TubesCursor:', error);
+            }
+        }
+        
+        initTubesBackground();
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Typing Animation
             const typingText = document.getElementById('typing-text');
