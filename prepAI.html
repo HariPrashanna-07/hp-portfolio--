@@ -53,19 +53,19 @@
     <!-- Header Navigation -->
     <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-400 flex items-center gap-2">
+            
                 <i class="fas fa-layer-group"></i> AgentVerse
-            </a>
+            
             <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
-                <a href="#overview" class="text-slate-300 hover:text-indigo-400 transition">Overview</a>
-                <a href="#demo" class="text-slate-300 hover:text-indigo-400 transition">Live Console Demo</a>
-                <a href="#agents" class="text-slate-300 hover:text-indigo-400 transition">Agent System</a>
-                <a href="#architecture" class="text-slate-300 hover:text-indigo-400 transition">Architecture</a>
-                <a href="#api" class="text-slate-300 hover:text-indigo-400 transition">API Endpoints</a>
+                Overview
+                Live Console Demo
+                Agent System
+                Architecture
+                API Endpoints
             </div>
-            <a href="#api" class="hidden sm:inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-lg shadow-indigo-900/30">
+            
                 <i class="fab fa-github"></i> View Repo
-            </a>
+            
         </nav>
     </header>
 
@@ -83,12 +83,12 @@
                     Real-Time Autonomous Interviewer, Evaluation Engine, and 7-Day Remediation Roadmap.
                 </p>
                 <div class="mt-8 flex flex-wrap justify-center gap-4">
-                    <a href="#demo" class="bg-white text-indigo-900 hover:bg-slate-100 font-bold px-6 py-3 rounded-lg shadow-lg transition">
+                    
                         Try Console Demo
-                    </a>
-                    <a href="#architecture" class="bg-indigo-950/60 border border-indigo-300/30 text-white hover:bg-indigo-900/50 font-semibold px-6 py-3 rounded-lg transition">
+                    
+                    
                         Explore Pipeline
-                    </a>
+                    
                 </div>
             </div>
         </section>
@@ -142,9 +142,7 @@
                         <span class="flex items-center gap-2 text-xs bg-indigo-950 text-indigo-400 border border-indigo-800 px-3 py-1.5 rounded-full">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Role: Software Engineer
                         </span>
-                        <button id="toggle-voice-btn" onclick="toggleVoice()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow">
-                            Voice Output: OFF
-                        </button>
+                        
                     </div>
                 </div>
 
@@ -176,9 +174,7 @@
                 <!-- Input Console -->
                 <div class="flex gap-3">
                     <input id="user-input" type="text" placeholder="Type your response or use voice input..." class="flex-grow bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500">
-                    <button onclick="sendTurn()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl text-sm transition">
-                        Send Response
-                    </button>
+                    
                 </div>
             </div>
         </section>
@@ -267,9 +263,7 @@
                     <h2 class="text-3xl font-bold text-indigo-400">Evaluation API Contract</h2>
                     <p class="text-slate-400 text-sm mt-1">POST /api/evaluate request payload with normalized scorecard output.</p>
                 </div>
-                <button onclick="copyPayload()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-4 py-2 rounded-lg border border-slate-700 transition">
-                    <i class="far fa-copy mr-1"></i> Copy Request
-                </button>
+                
             </div>
 
             <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
